@@ -24,7 +24,7 @@ if(@$session_life > $inactive){
 date_default_timezone_set("Africa/Nairobi");
 $this_site = "http://41.89.162.150/room//room/hybrid";
 $db = 'connect_db'; $host = 'localhost'; $user = 'root'; 
-$pass = 'swlab_admin@41';
+$pass = '146450f7';
 
 /*End of database connection variables*/
 

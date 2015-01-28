@@ -4,7 +4,7 @@
 	if(@$_SESSION['l031n45'] == ''){
 		
 		include "redirect.php";
-		$go = new redirect("login.php");
+		$go = new redirect("c_login.php");
 		die();
 		
 	}
@@ -144,7 +144,7 @@
 			<!-- BEGIN SIDEBAR LEFT -->
 			<div class="sidebar-left sidebar-nicescroller">
 				<ul class="sidebar-menu">
-					<li><a href="#"><i class="fa fa-dashboard icon-sidebar active selected "></i>Dashboard</a></li>
+					<li><a href="cpanel.php"><i class="fa fa-dashboard icon-sidebar active selected "></i>Dashboard</a></li>
                     <li>
 
                     <a href="new_reservation.php"><i class="fa fa-home icon-sidebar"></i>
@@ -194,11 +194,10 @@
 				<!-- End page heading -->
 				
 					<!-- BEGIN ALERT -->
-					<div class="alert alert-warning alert-bold-border fade in alert-dismissable">
+					<div class="alert alert-info alert-bold-border fade in alert-dismissable">
 					  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-					  <p><strong>Welcome!</strong></p>
-					  <p class="text-muted">You probably here cause wanna know how is <a class="alert-link" href="#fakelink">Sentir UI kits template</a>, or you have purchased it. But whatever! I just wanna 
-					  say thank you for viewing or purchasing my work. And let me know your feedback! <i class="fa fa-smile-o"></i></p>
+					  <p><strong>Welcome residence administrator!</strong></p>
+					  <p class="text-muted"> Please pick an action to take. </p>
 					</div>
 					<!-- END  ALERT -->
 				
@@ -207,153 +206,64 @@
 					<div class="row">
 						<div class="col-sm-3">
 							<div class="the-box no-border bg-success tiles-information">
-								<i class="fa fa-users icon-bg"></i>
+								<i class="fa fa-home icon-bg"></i>
 								<div class="tiles-inner text-center">
-									<p>TODAY VISITORS</p>
-									<h1 class="bolded">12,254K</h1> 
+									<p></p>
+									<h3 class="bolded">ROOM MANAGEMENT</h3> 
 									<div class="progress no-rounded progress-xs">
 									  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
 									  </div><!-- /.progress-bar .progress-bar-success -->
 									</div><!-- /.progress .no-rounded -->
-									<p><small>Better than yesterday ( 7,5% )</small></p>
+									<p><small></small></p>
 								</div><!-- /.tiles-inner -->
 							</div><!-- /.the-box no-border -->
 						</div><!-- /.col-sm-3 -->
 
 						<div class="col-sm-3">
 							<div class="the-box no-border bg-primary tiles-information">
-								<i class="fa fa-shopping-cart icon-bg"></i>
+								<i class="fa fa-bank icon-bg"></i>
 								<div class="tiles-inner text-center">
-									<p>TODAY SALES</p>
-									<h1 class="bolded">521</h1> 
-									<div class="progress no-rounded progress-xs">
-									  <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+                                    <p></p>
+                                    <h3 class="bolded">RESIDENCE MANAGEMENT</h3> 
+                                    <div class="progress no-rounded progress-xs">
+                                        <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
 									  </div><!-- /.progress-bar .progress-bar-primary -->
 									</div><!-- /.progress .no-rounded -->
-									<p><small>Better than yesterday ( 10,5% )</small></p>
+									<p></p>
 								</div><!-- /.tiles-inner -->
-							</div><!-- /.the-box no-border -->
+                            </div><!-- /.the-box no-border --><p></p>
 						</div><!-- /.col-sm-3 -->
-						<div class="col-sm-3">
+						<div class="col-sm-3 fly-out-lg" >
 							<div class="the-box no-border bg-danger tiles-information">
-								<i class="fa fa-comments icon-bg"></i>
+								<i class="fa fa-users icon-bg"></i>
 								<div class="tiles-inner text-center">
-									<p>TODAY FEEDBACK</p>
-									<h1 class="bolded">124</h1> 
-									<div class="progress no-rounded progress-xs">
-									  <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+                                    <p></p>
+                                    <h3 class="bolded">RESERVANT MANAGEMENT</h3> 
+                                    <div class="progress no-rounded progress-xs">
+                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
 									  </div><!-- /.progress-bar .progress-bar-danger -->
 									</div><!-- /.progress .no-rounded -->
-									<p><small>Less than yesterday ( <span class="text-danger">-7,5%</span> )</small></p>
+									<p></p>
 								</div><!-- /.tiles-inner -->
 							</div><!-- /.the-box no-border -->
 						</div><!-- /.col-sm-3 -->
 						<div class="col-sm-3">
 							<div class="the-box no-border bg-warning tiles-information">
-								<i class="fa fa-money icon-bg"></i>
+								<i class="fa fa-cogs icon-bg"></i>
 								<div class="tiles-inner text-center">
-									<p>TODAY EARNINGS</p>
-									<h1 class="bolded">10,241</h1> 
-									<div class="progress no-rounded progress-xs">
-									  <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+                                    <p></p>
+                                    <h3 class="bolded">SYSTEM CONFIGURATION</h3> 
+                                    <div class="progress no-rounded progress-xs">
+                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
 									  </div><!-- /.progress-bar .progress-bar-warning -->
 									</div><!-- /.progress .no-rounded -->
-									<p><small>Better than yesterday ( 2,5% )</small></p>
+									<p></p>
 								</div><!-- /.tiles-inner -->
 							</div><!-- /.the-box no-border -->
 						</div><!-- /.col-sm-3 -->
 					</div><!-- /.row -->
 					<!-- END SITE INFORMATIONS -->
 				
-					
-					<div class="row">
-						<div class="col-lg-8">
-														
-							
-							
-							
-							
-						</div><!-- /.col-sm-4 -->
-					</div><!-- /.row -->
-					
-				
-					
-					
-					<div class="row">
-						<div class="col-sm-8">
-							
-							<!-- BEGIN ITEM SHOWCASE -->
-							<div class="the-box full no-border item-lg">
-								<div id="store-item-carousel-2" class="owl-carousel">
-								  <div class="item full"><img src="assets/img/photo/large/img-7.jpg" class="item-image" alt="Image"></div>
-								  <div class="item full"><img src="assets/img/photo/large/img-8.jpg" class="item-image" alt="Image"></div>
-								</div>
-								<div class="item-des">
-									<div class="the-box transparent no-margin">
-									<h4 class="small-heading more-margin-bottom">FEATURED PRODUCT</h4>
-										<h1><a href="#fakelink">You product name here</a></h1>
-										<h4 class="bolded">&#36;220.00</h4>
-										<p class="text-muted item-des-text">
-										Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
-										</p>
-										<p>
-											<i class="fa fa-star text-warning"></i>
-											<i class="fa fa-star text-warning"></i>
-											<i class="fa fa-star text-warning"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-										</p>
-										<button class="btn btn-success btn-block btn-add">Add to cart</button>
-									</div><!-- /.the-box .transparent .no-margin -->
-								</div><!-- /.item-des -->
-							</div><!-- /.the-box .full -->
-							<!-- END ITEM SHOWCASE -->
-							
-						</div><!-- /.col-sm-8 -->
-						<div class="col-sm-4">
-							
-							<!-- BEGIN REMINDER WIDGET -->
-							<div class="the-box no-border full">
-								<div class="the-box bg-dark no-border no-margin">
-									<p class="text-center"><i class="fa fa-clock-o icon-lg"></i></p>
-									<h4 class="bolded less-distance text-danger text-center">My personal reminder</h4>
-								</div><!-- /.the-box no-border no-margin -->
-								<div class="the-box no-border bg-danger no-margin">
-								<h4>Next week agenda</h4>
-								<hr />
-									<div id="tiles-slide-1" class="owl-carousel my-reminder">
-									  <div class="item full text-left">
-										<p>
-										Eating some sand and listening alay songs in the small hole under bridge
-										</p>
-										<p class="small">Wrote about a month ago</p>
-									  </div>
-									  <div class="item full">
-										<p>
-										Go to school again, do homework again, meet some best friends again
-										</p>
-										<p class="small">Wrote about a week ago</p>
-									  </div>
-									  <div class="item full">
-										<p>
-										Finishing all my works, time to vacation, spending time with family and friends
-										</p>
-										<p class="small">Wrote 2 days ago</p>
-									  </div>
-									</div><!-- /#tiles-slide-1 -->
-								</div><!-- /.the-box no-border bg-danger no-margin -->
-							</div><!-- /.the-box .no-border .full -->
-							<!-- END REMINDER WIDGET -->
-							
-						</div><!-- /.col-sm-4 -->
-					</div><!-- /.row -->
-
-
-					
-					
-					
-					
-					
 					
 					
 				

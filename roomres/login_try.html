@@ -1,0 +1,159 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>UEAB|Room Reservation</title>
+
+<script src="jquery.min.js"></script>
+<style>  
+.ira_disp:hover {
+	border-radius:200px !important;
+	transition-duration:2s;
+	width:280px !important;
+	background: -moz-radial-gradient(center, ellipse cover,  rgba(30,87,153,1) 0%, rgba(125,185,232,0) 100%); /* FF3.6+ */
+background: rgb(68,71,244); /* Old browsers */
+background: -moz-radial-gradient(center, ellipse cover,  rgba(68,71,244,1) 0%, rgba(49,57,175,1) 100%); /* FF3.6+ */
+background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(68,71,244,1)), color-stop(100%,rgba(49,57,175,1))); /* Chrome,Safari4+ */
+background: -webkit-radial-gradient(center, ellipse cover,  rgba(68,71,244,1) 0%,rgba(49,57,175,1) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-radial-gradient(center, ellipse cover,  rgba(68,71,244,1) 0%,rgba(49,57,175,1) 100%); /* Opera 12+ */
+background: -ms-radial-gradient(center, ellipse cover,  rgba(68,71,244,1) 0%,rgba(49,57,175,1) 100%); /* IE10+ */
+background: radial-gradient(ellipse at center,  rgba(68,71,244,1) 0%,rgba(49,57,175,1) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4447f4', endColorstr='#3139af',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
+	cursor:pointer;
+	color:#FFF !important;
+	
+}
+.ira_disp {
+	border-radius:250px !important;
+	transition-duration:2s;
+	width:200px !important;
+	background: rgb(55,53,191); /* Old browsers */
+background: rgb(68,71,244); /* Old browsers */
+background: -moz-radial-gradient(center, ellipse cover,  rgba(68,71,244,1) 0%, rgba(49,57,175,1) 100%); /* FF3.6+ */
+background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(68,71,244,1)), color-stop(100%,rgba(49,57,175,1))); /* Chrome,Safari4+ */
+background: -webkit-radial-gradient(center, ellipse cover,  rgba(68,71,244,1) 0%,rgba(49,57,175,1) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-radial-gradient(center, ellipse cover,  rgba(68,71,244,1) 0%,rgba(49,57,175,1) 100%); /* Opera 12+ */
+background: -ms-radial-gradient(center, ellipse cover,  rgba(68,71,244,1) 0%,rgba(49,57,175,1) 100%); /* IE10+ */
+background: radial-gradient(ellipse at center,  rgba(68,71,244,1) 0%,rgba(49,57,175,1) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4447f4', endColorstr='#3139af',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
+
+	cursor:pointer;
+	color:#FFF !important;
+	
+}
+
+
+
+#login_main{
+	
+}
+
+#login_main_r, #login_main_l {
+	background-color:transparent;
+}
+
+@font-face
+{
+	font-family: theConnection;
+	src:url(the_connection.TTF);
+}
+
+#r_pos, #l_pos
+{
+	font-family:theConnection !important;
+	color:#03C;
+	font-size:16px;
+	
+}
+
+#titl{
+	font-family:theConnection !important;
+	color:#FFF;
+	font-size:40px;
+	text-shadow: 0px 6px 12px #999;
+}
+
+#px{
+	background: rgb(55,53,191); /* Old browsers */
+background: -moz-radial-gradient(center, ellipse cover,  rgba(55,53,191,1) 0%, rgba(35,34,122,1) 100%); /* FF3.6+ */
+background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(55,53,191,1)), color-stop(100%,rgba(35,34,122,1))); /* Chrome,Safari4+ */
+background: -webkit-radial-gradient(center, ellipse cover,  rgba(55,53,191,1) 0%,rgba(35,34,122,1) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-radial-gradient(center, ellipse cover,  rgba(55,53,191,1) 0%,rgba(35,34,122,1) 100%); /* Opera 12+ */
+background: -ms-radial-gradient(center, ellipse cover,  rgba(55,53,191,1) 0%,rgba(35,34,122,1) 100%); /* IE10+ */
+background: radial-gradient(ellipse at center,  rgba(55,53,191,1) 0%,rgba(35,34,122,1) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3735bf', endColorstr='#23227a',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
+
+
+}
+</style>
+<link rel="icon"  href="favicon.ico"  /></head>
+
+<body style="background-image:none;">
+<div id="start_body">
+		
+       	
+
+<div id="login_main" style="width:50%; border:inset; border-color:#000;  display:block; margin-top:8%; min-height:480px; border-radius:1px; margin-bottom:10%; margin-left:auto; margin-right:auto;" >
+
+	
+    <div id="px" align="center" style="width:100%; min-height:40px;" >
+        <img src="ueab_logo.png" width="80" height="80" />
+         <center><h2 id="titl">UEAB ROOM RESERVATION</h2></center>
+    </div>
+    
+
+    
+	<div id="login_main_l" style="width:48%; float:left; height:300px;  margin-left:5px; margin-top:0.3%;  border-radius:400px;">
+    	
+        <center>
+            <div id="l_pos" class='ira_disp' style=" transition-duration:1s; height:180px; width:150px; border-radius:180px;  margin-top:20px;">
+            	<h2 ><br /><br /><br /> ADMIN </h2>
+            </div>        
+        </center>
+        
+    </div>
+    
+    <div id="login_main_r" style="width:48%; float:right; height:300px;  margin-right:5px; margin-top:0.3%;  border-radius:400px;">		    	
+        <center>
+            <div id='r_pos' class='ira_disp' style=" transition-duration:1s; height:180px; width:150px; border-radius:180px;  margin-top:20px;">
+            	<h2 > <br /><br /><br />STUDENTS </h2>
+            </div>
+        </center>
+        
+    </div>
+
+
+    </div>
+
+
+</div>
+
+<script>
+$(document).ready(function(e) {
+	
+    $('#login_main_l').click(function(e) {
+        //alert("You have clicked on Admin");
+		$('#start_body').fadeOut(200);
+		$('#start_body').fadeIn(1000);
+		$('#start_body').html('<iframe src="c_login.php" width="100%" seamless height="700px">The Connection Login Interface</iframe>');
+		
+    });
+	
+	$('#login_main_r').click(function(e) {
+        //alert("You have clicked on Student");
+		$('#start_body').fadeOut(200);
+		$('#start_body').fadeIn(1000);
+		$('#start_body').html('<iframe src="login.php" width="100%" seamless height="700px">The Connection Login Interface</iframe>');
+		
+    });
+	
+});
+
+</script>
+
+
+</body>
+</html>

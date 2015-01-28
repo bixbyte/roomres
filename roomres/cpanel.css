@@ -1,0 +1,306 @@
+@charset "utf-8";
+/* Simple fluid media
+   Note: Fluid media requires that you remove the media's height and width attributes from the HTML
+   http://www.alistapart.com/articles/fluid-images/ 
+*/
+img, object, embed, video {
+	max-width: 100%;
+}
+
+/* IE 6 does not support max-width so default to width 100% */
+.ie6 img {
+	width:100%;
+}
+
+/*
+	Dreamweaver Fluid Grid Properties
+	----------------------------------
+	dw-num-cols-mobile:		4;
+	dw-num-cols-tablet:		8;
+	dw-num-cols-desktop:	12;
+	dw-gutter-percentage:	25;
+	
+	Inspiration from "Responsive Web Design" by Ethan Marcotte 
+	http://www.alistapart.com/articles/responsive-web-design
+	
+	and Golden Grid System by Joni Korpi
+	http://goldengridsystem.com/
+*/
+
+.fluid {
+	clear: both;
+	margin-left: 0;
+	width: 100%;
+	float: left;
+	display: block;
+}
+
+.fluidList {
+    list-style:none;
+    list-style-image:none;
+    margin:0;
+    padding:0;        
+}
+
+/* Mobile Layout: 480px and below. */
+  
+.gridContainer {
+	margin-left: auto;
+	margin-right: auto;
+	width: 86.45%;
+	padding-left: 2.275%;
+	padding-right: 2.275%;
+	clear: none;
+	float: none;
+}
+#div1 {
+width: 47.3684%;
+}
+#div2 {
+    width: 47.3684%;
+    clear: both;
+    margin-left: 0;
+}
+#div3 {
+    width: 47.3684%;
+    clear: none;
+    margin-left: 5.2631%;
+    position: static;
+    height: auto;
+}
+#div4 {
+    width: 47.3684%;
+    clear: none;
+    margin-left: 5.2631%;
+}
+#div5 {
+    width: 47.3684%;
+    clear: none;
+    margin-left: 5.2631%;
+}
+#div6 {
+    width: 47.3684%;
+    clear: both;
+    margin-left: 0;
+}
+.power_panel_foot {
+}
+.title_a {
+clear: both;
+margin-left: 0;
+}
+.figure_a {
+width: 100%;
+margin-left: 0;
+}
+.figure_b {
+width: 100%;
+margin-left: 0;
+}
+.figure_c {
+width: 100%;
+margin-left: 0;
+}
+.figure_d {
+width: 100%;
+margin-left: 0;
+}
+.figure_e {
+width: 100%;
+margin-left: 0;
+}
+.figure_f {
+width: 100%;
+margin-left: 0;
+}
+.connection_nav_a {
+}
+.trial_pane {
+width: 100%;
+clear: none;
+margin-left: 5.2631%;
+}
+.zeroMargin_mobile {
+margin-left: 0;
+}
+.hide_mobile {
+display: none;
+}
+
+/* Tablet Layout: 481px to 768px. Inherits styles from: Mobile Layout. */
+
+@media only screen and (min-width: 481px) {
+
+.gridContainer {
+	width: 90.675%;
+	padding-left: 1.1625%;
+	padding-right: 1.1625%;
+	clear: none;
+	float: none;
+	margin-left: auto;
+}
+#div1 {
+width: 48.7179%;
+}
+#div2 {
+    width: 48.7179%;
+    clear: both;
+    margin-left: 0;
+}
+#div3 {
+    width: 48.7179%;
+    clear: none;
+    margin-left: 2.5641%;
+    position: static;
+    height: auto;
+}
+#div4 {
+    width: 48.7179%;
+    clear: none;
+    margin-left: 2.5641%;
+}
+#div5 {
+    width: 48.7179%;
+    clear: none;
+    margin-left: 2.5641%;
+}
+#div6 {
+    width: 48.7179%;
+    clear: both;
+    margin-left: 0;
+}
+.power_panel_foot {
+}
+.title_a {
+clear: both;
+margin-left: 0;
+}
+.figure_a {
+width: 100%;
+margin-left: 0;
+}
+.figure_b {
+width: 100%;
+margin-left: 0;
+}
+.figure_c {
+width: 100%;
+margin-left: 0;
+}
+.figure_d {
+width: 100%;
+margin-left: 0;
+}
+.figure_e {
+width: 100%;
+margin-left: 0;
+}
+.figure_f {
+width: 100%;
+margin-left: 0;
+}
+.connection_nav_a {
+display: block;
+}
+.trial_pane {
+width: 100%;
+clear: both;
+margin-left: 0;
+}
+.hide_tablet {
+display: none;
+}
+.zeroMargin_tablet {
+margin-left: 0;
+}
+}
+
+/* Desktop Layout: 769px to a max of 1232px.  Inherits styles from: Mobile Layout and Tablet Layout. */
+
+@media only screen and (min-width: 769px) {
+
+.gridContainer {
+	width: 88.5%;
+	max-width: 1232px;
+	padding-left: 0.75%;
+	padding-right: 0.75%;
+	margin: auto;
+	clear: none;
+	float: none;
+	margin-left: auto;
+}
+#div1 {
+width: 32.2033%;
+}
+#div2 {
+    width: 32.2033%;
+    margin-left: 1.6949%;
+    clear: none;
+}
+#div3 {
+    width: 32.2033%;
+    margin-left: 1.6949%;
+    clear: none;
+    position: static;
+    height: auto;
+}
+#div4 {
+    width: 32.2033%;
+    margin-left: 1.6949%;
+    clear: none;
+}
+#div5 {
+    width: 32.2033%;
+    margin-left: 0;
+    clear: both;
+}
+#div6 {
+    width: 32.2033%;
+    margin-left: 1.6949%;
+    clear: none;
+}
+.power_panel_foot {
+}
+.title_a {
+margin-left: 5.2631%;
+clear: none;
+}
+.figure_a {
+width: 100%;
+margin-left: 0;
+}
+.figure_b {
+width: 100%;
+margin-left: 0;
+}
+.figure_c {
+width: 100%;
+margin-left: 0;
+}
+.figure_d {
+width: 100%;
+margin-left: 0;
+}
+.figure_e {
+width: 100%;
+margin-left: 0;
+}
+.figure_f {
+width: 100%;
+margin-left: 0;
+}
+.connection_nav_a {
+display: block;
+}
+.trial_pane {
+width: 100%;
+margin-left: 1.6949%;
+clear: none;
+}
+.zeroMargin_desktop {
+margin-left: 0;
+}
+.hide_desktop {
+display: none;
+}
+}

@@ -153,6 +153,38 @@ switch (@$_REQUEST['act']){
 		unset($search);	
                 exit;
 	break; 
+    
+    
+   /* Handle administrator login requests */ 
+    case "admin_login":
+
+    $username 	= @sanitize($_REQUEST['username']);
+    $passw4d		= @sanitize($_REQUEST['passwd']);
+
+    if(@$username != '' &&	@$passw4d != ''){
+
+        include "add_login.php";
+        $login = new login(@sanitize($username), @sanitize($passw4d), "admin_login");
+        unset($login);
+        exit;
+    }else{
+
+        die('<script>alert("Please fill in all details to continue! \n\n "); history.back();</script>');
+
+    }
+
+    break;
+    
+    
+    /* Administrator password recovery */
+    case "request_password_c":
+
+        include "add_recovery.php";
+        $paski = new recovery(@sanitize($_REQUEST['username']),"passwd","passwd_c");
+        unset($paski);
+        exit;
+
+    break;
 
 	default: 
 		die ('<div class="alert alert-danger alert-bold-border fade in alert-dismissable">

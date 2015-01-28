@@ -232,10 +232,10 @@
 					<div class="row">
 						<div class="col-sm-3">
 							<div class="the-box no-border bg-success tiles-information fly-out-l">
-								<i class="fa fa-users icon-bg "></i>
+								<i class="fa fa-home icon-bg "></i>
 								<div class="tiles-inner text-center ">
 									<p>RESIDENCE</p>
-									<h2 class="bolded">
+									<h3 class="bolded">
                                                                             <?php 
 		 
                                                                                 if(@$_SESSION['u56_res'] != '' && @$_SESSION['u56_res'] != 0 ){ 
@@ -248,7 +248,7 @@
                                                                                          echo "n/a";
                                                                                 }
                                                                             ?>
-                                                                        </h2> 
+                                                                        </h3> 
 									<div class="progress no-rounded progress-xs">
 									  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
 									  </div><!-- /.progress-bar .progress-bar-success -->
@@ -259,17 +259,17 @@
 						</div><!-- /.col-sm-3 -->
 						<div class="col-sm-3">
 							<div class="the-box no-border bg-primary tiles-information fly-out-l">
-								<i class="fa fa-shopping-cart icon-bg"></i>
+								<i class="fa fa-home icon-bg"></i>
 								<div class="tiles-inner text-center">
 									<p>ROOM NUMBER</p>
-									<h1 class="bolded">
+									<h2 class="bolded">
                                                                             <?php 
                                                                                 if(@$_SESSION['u56_rnum'] != '' && @$_SESSION['u56_rnum'] != 0 ){ 
                                                                                     print htmlentities(@$_SESSION['u56_rnum']); 
                                                                                 }else{ 
                                                                                     echo "n/a";
                                                                                 } 
-                                                                            ?></h1> 
+                                                                            ?></h2> 
 									<div class="progress no-rounded progress-xs">
 									  <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
 									  </div><!-- /.progress-bar .progress-bar-primary -->
@@ -280,7 +280,7 @@
 						</div><!-- /.col-sm-3 -->
 						<div class="col-sm-3">
 							<div class="the-box no-border bg-danger tiles-information fly-out-l">
-								<i class="fa fa-comments icon-bg"></i>
+								<i class="fa fa-home icon-bg"></i>
 								<div class="tiles-inner text-center">
 									<p>TRIMESTER</p>
 									<h3 class="bolded"><?php echo @htmlentities($_SESSION['trim_name']); ?></h3> 
@@ -294,7 +294,7 @@
 						</div><!-- /.col-sm-3 -->
 						<div class="col-sm-3">
 							<div class="the-box no-border bg-warning tiles-information fly-out-l">
-								<i class="fa fa-money icon-bg"></i>
+								<i class="fa fa-users icon-bg"></i>
 								<div class="tiles-inner text-center">
 									<p>CAPACITY</p>
 									<h2 class="bolded">

@@ -45,13 +45,34 @@ class search {
 			$relz = $_SESSION['query']; 
 			$nums = $_SESSION['num_rows'];
 			
+         $atz = '<!-- BEGIN TIMELINE -->
+					<ul class="timeline">
+						<li class="centering-line"></li>';
+                     
 			if($nums != 1){ $trm = " Results Found. <br /><hr width='80%' align='center' />"; }else{ $trm = " Result Found. <br /><hr width='80%' align='center' />"; }
 			
-			echo "<center> <code style='color:red;'>".$nums."</code><code> ".$trm."</code> </center>";
+			$atz .= "<center>  </center>";
+         '
+						<ul class="timeline">
+							<li class="centering-line"></li>
+
+							<!-- BEGIN TIME CAT-->
+							<li class="center-timeline-cat">
+								<div class="inner">
+								<code style="color:red;">'.$nums.'</code><code> '.$trm.'</code>
+								</div><!-- /.inner -->
+							</li>
+							<!-- END TIME CAT-->
+						</ul>
+						<ul class="timeline">
+						<!-- BEGIN CENTERING LINE -->
+						<li class="centering-line"></li>
+						<!-- END CENTERING LINE -->	
+					';
 			$detz = array();
 			while ($results = mysqli_fetch_array($relz)){
-						
-				echo '<center>
+				/*		
+				$atz .= '<center>
 				<div id="card_holder" ">
 				
 					<div id="card_mini_frame" >
@@ -83,10 +104,44 @@ class search {
 				</div>
 				</center>
 				<br /><br />';
+                */
+                $atz .= '<!-- BEGIN ITEM TIMELINE -->
+						<li class="item-timeline">
+							<div class="buletan"></div>
+							<div class="inner-content">
+
+								<!-- BEGIN HEADING TIMELINE -->
+								<div class="heading-timeline">
+									<!-- <img src="assets/img/avatar/avatar-1.jpg" class="avatar" alt="Avatar"> -->
+									<div class="user-timeline-info">
+										
+										&nbsp; '.strtoupper( htmlentities($results['name']) ).' &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [ <b> '.htmlentities($results['s_idnum']).' </b> ]
+										
+                                       
+									</div><!-- /.user-timeline-info -->
+                                             
+								</div><!-- /.heading-timeline -->
+                                    &nbsp; <code>'.@htmlentities($rezes[$results['res']]).'</code> ROOM <code>'.@htmlentities($results['rnum']).'</code>
+								<!-- BEGIN HEADING TIMELINE -->
+
+								<!-- BEGIN FOOTER TIMELINE -->
+								<div class="footer-timeline">
+									&nbsp;&nbsp; <i class="fa fa-envelope"></i> &nbsp;'.htmlentities($results['email']).' &nbsp;&nbsp;&nbsp;&nbsp; <i class="fa fa-phone "></i> &nbsp;'.@htmlentities($results['tel']).'
+									<ul class="timeline-option">
+
+									</ul>
+
+								<!-- END FOOTER TIMELINE -->
+
+							</div><!-- /.inner-content -->
+						</li>
+						<!-- END ITEM TIMELINE -->'; 
 			
 			}
 		
-		
+         $atz .= '</div></center><br /><br /><br />';
+         
+         echo $atz;
 			
 			
 		else:
@@ -145,10 +200,28 @@ class search {
 			if($nums != 1){ $trm = " Results Found. <br /><hr width='80%' align='center' />"; }else{ $trm = " Result Found. <br />
 			<code>Showing Results for people with reserved rooms only<br/></code><hr width='80%' align='center' />"; }
 			
-			echo "<center> <code style='color:red;'>".$nums."</code><code> ".$trm."</code> </center>";
+			//echo "<center> <code style='color:red;'>".$nums."</code><code> ".$trm."</code> </center>";
+        echo       '
+						<ul class="timeline">
+							<li class="centering-line"></li>
+
+							<!-- BEGIN TIME CAT-->
+							<li class="center-timeline-cat">
+								<div class="inner">
+								<code style="color:red;">'.$nums.'</code><code> '.$trm.'</code>
+								</div><!-- /.inner -->
+							</li>
+							<!-- END TIME CAT-->
+						</ul>
+						<ul class="timeline">
+						<!-- BEGIN CENTERING LINE -->
+						<li class="centering-line"></li>
+						<!-- END CENTERING LINE -->	
+					';
 			$detz = array();
 			while ($results = mysqli_fetch_array($relz)){
-						
+			
+                /*
 				echo '<center>
 				<div id="card_holder" ">
 				
@@ -181,6 +254,39 @@ class search {
 				</div>
 				</center>
 				<br /><br />';
+                */
+                
+                echo '<!-- BEGIN ITEM TIMELINE -->
+						<li class="item-timeline">
+							<div class="buletan"></div>
+							<div class="inner-content">
+
+								<!-- BEGIN HEADING TIMELINE -->
+								<div class="heading-timeline">
+									<!-- <img src="assets/img/avatar/avatar-1.jpg" class="avatar" alt="Avatar"> -->
+									<div class="user-timeline-info">
+
+										&nbsp; '.strtoupper( htmlentities($results['name']) ).' &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [ <b> '.htmlentities($results['s_idnum']).' </b> ]
+
+
+									</div><!-- /.user-timeline-info -->
+
+								</div><!-- /.heading-timeline -->
+                                    &nbsp; <code>'.@htmlentities($rezes[$results['res']]).'</code> ROOM <code>'.@htmlentities($results['rnum']).'</code>
+								<!-- BEGIN HEADING TIMELINE -->
+
+								<!-- BEGIN FOOTER TIMELINE -->
+								<div class="footer-timeline">
+									&nbsp;&nbsp; <i class="fa fa-envelope"></i> &nbsp;'.htmlentities($results['email']).' &nbsp;&nbsp;&nbsp;&nbsp; <i class="fa fa-phone "></i> &nbsp;'.@htmlentities($results['tel']).'
+									<ul class="timeline-option">
+
+									</ul>
+
+								<!-- END FOOTER TIMELINE -->
+
+							</div><!-- /.inner-content -->
+						</li>
+						<!-- END ITEM TIMELINE -->'; 
 			
 			}
 		
@@ -188,7 +294,14 @@ class search {
 			
 			
 		else:
-			echo '<img src="loading.gif" >';
+        echo '<br><center><code class="text-danger">  AWAITING SEARCH INPUT </code></center>
+					<div class="spinner"> 
+					<div class="rect1"></div>
+					<div class="rect2"></div>
+					<div class="rect3"></div>
+					<div class="rect4"></div>
+					<div class="rect5"></div>
+				</div>';
 		endif;
 	}
 	
@@ -234,10 +347,26 @@ class search {
 			
 			if($nums != 1){ $trm = " Results Found. <br /><hr width='80%' align='center' />"; }else{ $trm = " Result Found. <br /><hr width='80%' align='center' />"; }
 			
-			echo "<center> <code style='color:red;' >".$nums."</code><code> ".$trm."</code> </center>";
+       echo  '<ul class="timeline">
+							<li class="centering-line"></li>
+
+							<!-- BEGIN TIME CAT-->
+							<li class="center-timeline-cat">
+								<div class="inner">
+								<code style="color:red;">'.$nums.'</code><br><code> '.$trm.'</code>
+								</div><!-- /.inner -->
+							</li>
+							<!-- END TIME CAT-->
+						</ul>
+						<ul class="timeline">
+						<!-- BEGIN CENTERING LINE -->
+						<li class="centering-line"></li>
+						<!-- END CENTERING LINE -->
+                        
+					';
 			$detz = array();
 			while ($results = mysqli_fetch_array($relz)){
-						
+				/*		
 				echo '<center>
 				<div id="card_holder" ">
 				
@@ -270,6 +399,39 @@ class search {
 				</div>
 				</center>
 				<br /><br />';
+                */
+                
+                echo '<!-- BEGIN ITEM TIMELINE -->
+						<li class="item-timeline">
+							<div class="buletan"></div>
+							<div class="inner-content">
+
+								<!-- BEGIN HEADING TIMELINE -->
+								<div class="heading-timeline">
+									<!-- <img src="assets/img/avatar/avatar-1.jpg" class="avatar" alt="Avatar"> -->
+									<div class="user-timeline-info">
+
+										&nbsp; '.strtoupper( htmlentities($results['name']) ).' &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [ <b> '.htmlentities($results['s_idnum']).' </b> ]
+
+
+									</div><!-- /.user-timeline-info -->
+
+								</div><!-- /.heading-timeline -->
+                                    &nbsp; <code>'.@htmlentities($rezes[$results['res']]).'</code> ROOM <code>'.@htmlentities($results['rnum']).'</code>
+								<!-- BEGIN HEADING TIMELINE -->
+
+								<!-- BEGIN FOOTER TIMELINE -->
+								<div class="footer-timeline">
+									&nbsp;&nbsp; <i class="fa fa-envelope"></i> &nbsp;'.htmlentities($results['email']).' &nbsp;&nbsp;&nbsp;&nbsp; <i class="fa fa-phone "></i> &nbsp;'.@htmlentities($results['tel']).'
+									<ul class="timeline-option">
+
+									</ul>
+
+								<!-- END FOOTER TIMELINE -->
+
+							</div><!-- /.inner-content -->
+						</li>
+						<!-- END ITEM TIMELINE -->'; 
 			
 			}
 		
@@ -277,7 +439,14 @@ class search {
 			
 			
 		else:
-			echo '<img src="loading.gif" >';
+        echo '<br><center><code class="text-danger">  AWAITING SEARCH INPUT </code></center>
+					<div class="spinner"> 
+					<div class="rect1"></div>
+					<div class="rect2"></div>
+					<div class="rect3"></div>
+					<div class="rect4"></div>
+					<div class="rect5"></div>
+				</div>';
 		endif;
 		
 		

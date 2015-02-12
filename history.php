@@ -138,30 +138,30 @@
 			<!-- END TOP NAV -->
 			
 			
-			<!-- BEGIN SIDEBAR LEFT -->
-			<div class="sidebar-left sidebar-nicescroller">
-				<ul class="sidebar-menu ">
-					<li><a href="panel.php"><i class="fa fa-dashboard icon-sidebar "></i>Dashboard</a></li>
-                                        <li><a href="new_reservation.php"><i class="fa fa-home icon-sidebar"></i>RESERVE</a></li>
-                                        <li><a href="#"><i class="fa fa-clock-o icon-sidebar active selected"></i>HISTORY</a></li>
-                                        <li><a href="#"><i class="fa fa-comment icon-sidebar"></i>REQUEST</a></li>
-					<li class="active selected">
-						<a href="#fakelink">
-							<i class="fa fa-desktop icon-sidebar"></i>
-							<i class="fa fa-angle-right chevron-icon-sidebar"></i>
-							SETTINGS
-							
-							</a>
-						<ul class="submenu visible">
-							<li><a href="#link1">Picture</a></li>
-							<li><a href="#link2">Email</a></li>
-							<li><a href="#link3">Password</a></li>
-						</ul>
-					</li>
-					
-				</ul>
-			</div><!-- /.sidebar-left -->
-			<!-- END SIDEBAR LEFT -->
+            <!-- BEGIN SIDEBAR LEFT -->
+            <div class="sidebar-left sidebar-nicescroller">
+                <ul class="sidebar-menu ">
+                    <li><a href="panel.php"><i class="fa fa-dashboard icon-sidebar active selected "></i>Dashboard</a></li>
+                    <li><a href="new_reservation.php"><i class="fa fa-home icon-sidebar"></i>RESERVE</a></li>
+                    <li><a href="history.php"><i class="fa fa-clock-o icon-sidebar"></i>HISTORY</a></li>
+                    <li><a href="#"><i class="fa fa-comment icon-sidebar"></i>REQUEST</a></li>
+                    <li class="active selected">
+                        <a href="#fakelink">
+                            <i class="fa fa-desktop icon-sidebar"></i>
+                            <i class="fa fa-angle-right chevron-icon-sidebar"></i>
+                            SETTINGS
+
+                        </a>
+                        <ul class="submenu visible">
+                            <li><a href="#picture" style="text-decoration: line-through"  >Picture</a></li>
+                            <li><a href="#email" style="text-decoration: line-through" >Email</a></li>
+                            <li><a href="new_password.php"  >Password</a></li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </div><!-- /.sidebar-left -->
+            <!-- END SIDEBAR LEFT -->
 			
 			
 			

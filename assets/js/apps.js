@@ -25,6 +25,15 @@ function doRes(resnum) {
 
 $(document).ready(function(){
 
+/* SIMPLE WIDGET FUNCTION */
+           //create instance
+        $('.chart').easyPieChart({
+            animate: 2000
+        });
+        
+/* EO SIMPLE CHART WIDGET FUNCTION */
+    
+    
 /* Custom force sidebar color */
 
      $(function(){"use strict";

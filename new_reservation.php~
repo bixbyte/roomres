@@ -329,7 +329,7 @@ $id = "new_reservation.php";
                                                     if(@$_SESSION['u56_res'] == 0 || @$_SESSION['u56_rnum'] == 0){
                                                         
 			                                            if(@$status == 1 || @$times < 1){
-                                                            echo "<code> AWAITING RESIDENCE SELECTION</code><br><br> <code>Click on a residence circle to proceed</code>";
+                                                            echo "<code> AWAITING RESIDENCE SELECTION</code><br><br> Click on a residence circle to proceed!";
                                                         }else {
                                                             echo "NOTHING TO SEE HERE";
                                                         }

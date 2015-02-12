@@ -23,17 +23,17 @@ if( ( $_SESSION['u56_res'] == 0 && $_SESSION['u56_rnum'] == 0 ) || ( $_SESSION['
          
           if( $percent == 100 ){ 
               $i = 2;
-              $data = 'onclick="javascript:book_room( 0, '.$_REQUEST['resid'].' )" class="btn btn-danger "';
+              $data = 'onclick="javascript:book_room( 0, '.$_REQUEST['resid'].' )" class="btn btn-danger perspective col-lg-3"';
           }else if($percent > 0 ){
               $i = 2;
-              $data = 'onclick="javascript:book_room( ' .@htmlentities($r_data['r_number'].', '.$_REQUEST['resid']).')" class="btn  btn-info"';
+              $data = 'onclick="javascript:book_room( ' .@htmlentities($r_data['r_number'].', '.$_REQUEST['resid']).')" class="btn  btn-info perspective col-lg-3"';
           }else{
               $i = 1;
-              $data = 'onclick="javascript:book_room(' .@htmlentities($r_data['r_number'].','.$_REQUEST['resid']). ')" class=" btn  btn-success"';
+              $data = 'onclick="javascript:book_room(' .@htmlentities($r_data['r_number'].','.$_REQUEST['resid']). ')" class=" btn  btn-success perspective col-lg-3"';
           }
           
           //<button type="button" class="btn btn-success">Success</button>
-          $resp .=  '<button type="button" '.$data.'> Room ' .@htmlentities($r_data['r_number']).'  </button>'; 
+          $resp .=  '<button type="button" style="margin: 5px;" '.$data.'> Room ' .@htmlentities($r_data['r_number']).'  </button>'; 
           
       }
       

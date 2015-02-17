@@ -36,16 +36,7 @@ function sanitize($value){
 switch (@$_REQUEST['act']){
 
 
-	case "new_residence":
 	
-		include "add_residence.php";
-		$new_residence = new residence(@sanitize($_REQUEST['name']), @sanitize($_REQUEST['gender'])); 
-		$new_residence->add_res();
-		
-		unset($new_residence);
-                exit;
-		
-	break;
 	
 	
 	

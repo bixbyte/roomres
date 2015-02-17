@@ -185,6 +185,18 @@ switch (@$_REQUEST['act']){
         exit;
 
     break;
+    
+    /* Perform Residence Addition */
+    case "new_residence":
+
+        include "add_residence.php";
+        $new_residence = new residence(@sanitize($_REQUEST['name']), @sanitize($_REQUEST['gender'])); 
+        $new_residence->add_res();
+
+        unset($new_residence);
+        exit;
+
+    break;
 
 	default: 
 		die ('<div class="alert alert-danger alert-bold-border fade in alert-dismissable">

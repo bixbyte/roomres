@@ -32,10 +32,11 @@ class residence {
 		}else{
 			$id = $this->id;
 			include 'main.php';
-			echo "<script>alert('Please re-enter the required details!');</script>";
-			$redirect = new redirect('new_residence.php');
-			die();
-		}
+            die ('<div class="alert alert-danger alert-bold-border fade in alert-dismissable">
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                    <strong>Error!</strong><br> Please Fill in all the required details <br> <a href="#" class="alert-link">TRY AGAIN</a>.
+                                    </div>');
+        }
 		
 	}
 		
@@ -48,25 +49,23 @@ class residence {
 		
 		include 'main.php';
 		
-		
-		/*
-			//$connection->num_rows("SELECT * FROM $this->tbl_name WHERE name='$this->res_name' AND gender='$this->res_gender'");
-			
-			//if($_SESSION['num_rows'] <> 0){
-				die("<script>alert('Sorry! \\nIt seems like this residence already exists.\\n\\tPlease try again.'); history.back(1);</script>");
-			//}else{
-			//unset($_SESSION['query']);
-		*/
-			$connection->query("INSERT INTO $this->tbl_name (name, gender) VALUES('$this->res_name','$this->res_gender')", true);		
+	$connection->query("INSERT INTO $this->tbl_name (name, gender) VALUES('$this->res_name','$this->res_gender')", false);		
 			
 			if(@$_SESSION['query']){
 				if(@$this->mess != ''){}else{echo @$this->mess;}
-				echo "<script>alert('Successfully inserted');</script> Residence Added! <br/> Would you like to ... <br />
-				<a href='javascript:history.back(1);'>Go back.</a> <br/><a href='new_room.php'>Add rooms.</a> ";
-		/*
-			//}
-		*/
-		}
+                die ('<div class="alert alert-sucess alert-bold-border fade in alert-dismissable">
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                    <strong>Residence Added!</strong><br> Would you like to ... <br />
+				 <br/><a href="#" onclick="roomAdd()" > Add rooms. </a> </div>');				
+		
+		}else{
+                
+                die ('<div class="alert alert-danger alert-bold-border fade in alert-dismissable">
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                    <strong>Error!</strong><br> Failed to add that residence!  <br /> Check to see that it hasn\'t been added
+				 </div>');
+                
+        }
 		
 	}
 

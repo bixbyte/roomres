@@ -61,6 +61,7 @@
 		<!-- MAIN CSS (REQUIRED ALL PAGE)-->
 		<link href="assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 		<link href="assets/css/style.css" rel="stylesheet">
+		<link href="assets/css/custom.css" rel="stylesheet">
 		<link href="assets/css/style-responsive.css" rel="stylesheet">
  
 		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -68,6 +69,8 @@
 		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 		<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 		<![endif]-->
+		
+        <script src="assets/js/jquery.min.js"></script>
 	</head>
  
 	<body class="tooltips">
@@ -193,25 +196,28 @@
 				<h1 class="page-heading ">DASHBOARD <small></small></h1>
 				<!-- End page heading -->
 				
+				
 					<!-- BEGIN ALERT -->
+					<!-- 
 					<div class="alert alert-info alert-bold-border fade in alert-dismissable">
 					  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 					  <p><strong>Welcome residence administrator!</strong></p>
 					  <p class="text-muted"> Please pick an action to take. </p>
 					</div>
+					 -->
 					<!-- END  ALERT -->
 				
 					
 					<!-- BEGIN SiTE INFORMATIONS -->
 					<div class="row">
 						<div class="col-sm-3">
-							<div class="the-box no-border bg-success tiles-information">
-								<i class="fa fa-home icon-bg"></i>
+							<div class="the-box no-border bg-success tiles-information fly-out-l"  onclick="residenceManagement();" style="cursor: pointer;">
+								<i class="fa fa-room icon-bg"></i>
 								<div class="tiles-inner text-center">
 									<p></p>
-									<h3 class="bolded">ROOM MANAGEMENT</h3> 
+									<h3 class="bolded">RESIDENCE MANAGEMENT</h3> 
 									<div class="progress no-rounded progress-xs">
-									  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+									  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%">
 									  </div><!-- /.progress-bar .progress-bar-success -->
 									</div><!-- /.progress .no-rounded -->
 									<p><small></small></p>
@@ -219,42 +225,43 @@
 							</div><!-- /.the-box no-border -->
 						</div><!-- /.col-sm-3 -->
 
-						<div class="col-sm-3">
-							<div class="the-box no-border bg-primary tiles-information">
-								<i class="fa fa-bank icon-bg"></i>
+						<div class="col-sm-3" >
+							<div class="the-box no-border bg-primary tiles-information fly-out-l" onclick="roomManagement()" style="cursor: pointer;">
+								<i class="fa fa-room icon-bg"></i>
 								<div class="tiles-inner text-center">
                                     <p></p>
-                                    <h3 class="bolded">RESIDENCE MANAGEMENT</h3> 
+                                    <h3 class="bolded">ROOM MANAGEMENT</h3> 
                                     <div class="progress no-rounded progress-xs">
-                                        <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+                                        <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%">
 									  </div><!-- /.progress-bar .progress-bar-primary -->
 									</div><!-- /.progress .no-rounded -->
 									<p></p>
 								</div><!-- /.tiles-inner -->
                             </div><!-- /.the-box no-border --><p></p>
 						</div><!-- /.col-sm-3 -->
-						<div class="col-sm-3 fly-out-lg" >
-							<div class="the-box no-border bg-danger tiles-information">
-								<i class="fa fa-users icon-bg"></i>
+						
+						<div class="col-sm-3 " >
+							<div class="the-box no-border bg-danger tiles-information fly-out-l" onclick="reservantManagement()" style="cursor: pointer;">
+								<i class="fa fa-user icon-bg"></i>
 								<div class="tiles-inner text-center">
                                     <p></p>
                                     <h3 class="bolded">RESERVANT MANAGEMENT</h3> 
                                     <div class="progress no-rounded progress-xs">
-                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%">
 									  </div><!-- /.progress-bar .progress-bar-danger -->
 									</div><!-- /.progress .no-rounded -->
 									<p></p>
 								</div><!-- /.tiles-inner -->
 							</div><!-- /.the-box no-border -->
 						</div><!-- /.col-sm-3 -->
-						<div class="col-sm-3">
-							<div class="the-box no-border bg-warning tiles-information">
-								<i class="fa fa-cogs icon-bg"></i>
+						<div class="col-sm-3" >
+							<div class="the-box no-border bg-warning tiles-information fly-out-l" onclick="systemConfiguration()" style="cursor: pointer;">
+								<i class="fa fa-cog icon-bg"></i>
 								<div class="tiles-inner text-center">
                                     <p></p>
                                     <h3 class="bolded">SYSTEM CONFIGURATION</h3> 
                                     <div class="progress no-rounded progress-xs">
-                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%">
 									  </div><!-- /.progress-bar .progress-bar-warning -->
 									</div><!-- /.progress .no-rounded -->
 									<p></p>
@@ -265,6 +272,42 @@
 					<!-- END SITE INFORMATIONS -->
 				
 					
+					<!-- SYSTEM OPTIONS GO HERE  -->
+					<div id="pholder" class="alert center-block alert-bold-border fade in alert-dismissable col-lg-12 " style="height: auto;">
+					<style>
+						
+					</style>
+						<div id="system_options" style="padding-top: 0.5em;">
+							<div>
+							    <input type="text" class="mbtn" placeholder="First Room" id="roomAddfroom"> &nbsp;
+							    <input type="text" class="mbtn" placeholder="nth room" id="roomAddlroom"><br><br>
+                                <input type="text" class="mbtn" placeholder="Room Capacity" id="roomAddcapacity">&nbsp;
+                                <select id="roomAddresidence" class="mbtn">
+                                    
+                                </select>
+                                <br><br>
+                                <button class="btn btn-info" id="addRoom"> Add Room(s) </button>
+							</div>
+							<script>
+							   
+                                $(function(){
+                                    
+                                    $("#addRoom").on("click", function(){
+                                        
+                                        room_start = $("#roomAddfroom");
+                                        room_end   = $("#roomAddlroom");
+                                        room_capacity = $("#roomAddcapacity");
+                                        residence = $("#roomAddresidence");
+                                        act = "new_room";
+                                        
+                                    });
+                                    
+                                });
+                                
+							</script>
+						</div>
+					</div>
+					<!-- EO SYSTEM OPTIONS PANEL -->
 					
 				
 				</div><!-- /.container-fluid -->
@@ -299,7 +342,7 @@
 		===========================================================
 		-->
 		<!-- MAIN JAVASRCIPT (REQUIRED ALL PAGE)-->
-		<script src="assets/js/jquery.min.js"></script>
+		
 		<script src="assets/js/bootstrap.min.js"></script>
 		<script src="assets/plugins/retina/retina.min.js"></script>
 		<script src="assets/plugins/nicescroll/jquery.nicescroll.js"></script>
@@ -354,7 +397,108 @@
 		
 		<!-- MAIN APPS JS -->
 		<script src="assets/js/apps.js"></script>
+		<script>
+
+			
+			function residenceManagement(){
+
+				/* Display the residence management options */
+				
+				$(function(){
+
+					var main = $("#system_options");
+					
+					var data = '<p> <button class="btn btn-success perspective" onclick="resAdd()">Add Residence</button>  &nbsp; <button class="btn btn-success perspective disabled" onclick="resList()">Residence Occupant Lists</button>  &nbsp; <button class="btn btn-success perspective disabled"  onclick="resMan()"> Residence Management </button> </p>';
+					main.html(data);
+					
+				});
+				
+				/* Add new Residence */				
+				/* Residence occupant lists */
+				/* ** Manage current residences ** */
+			}
+
+			//Display Residence Addition Screen
+			function resAdd(){
+
+                $(function(){
+
+                    $("#system_options").html('<div style="" ><input type="text" id="resAddName" class="mbtn"  style="border:1px solid gray; color: green;" placeholder="Residence Name"> &nbsp;<select id="resAddGender" class=" mbtn " style="color: gray; font-weight: normal;"><option value="m" selected>Male</option><option value="f">Female</option><option value="a">Either</option></select>&nbsp;<button id="addRes" class="btn btn-success" style="color: white;"> Add Residence </button></div>');
+
+                    $("#addRes").on("click" , function(){ 
+
+                        gender = $("#resAddGender").val();
+                        resname = $("#resAddName").val();
+
+                        if( resname.length < 4 ){
+
+                            $("#resAddName").focus();
+
+                        }else{
+
+                            $.post("proc_adds.php", 
+                                   { act: "new_residence", gender: gender  , name: resname },
+                                   function( response ){
+                                $("#system_options").html( response );
+                            }
+                                  );
+                        }
+                    });
+                });	
+				
+			}
+
+			//Display The Residence occupants list
+			function resList(){
+			}
+
+			/* Display the general residence management panel */
+			function resMan(){
+			}
+			
+			function roomManagement(){
+
+				$(function(){
+
+					var main = $("#system_options");
+
+					var data = '<p> <button class="btn btn-primary perspective"  onclick="roomAdd()">Add Rooms</button>   &nbsp; <button class="btn btn-primary perspective" onclick="roomAvail()">Manage room Availability</button> </p>';
+					main.html(data);
+					
+				});
+				
+			}
+			function reservantManagement(){
+
+				$(function(){
+
+					var main = $("#system_options");
+
+					var data = '<p><button class="btn btn-danger perspective"  onclick="occuReset()">Reservation Reset</button>   &nbsp; <button class="btn btn-danger perspective" onclick="occuSearch()">Comprehensive search</button> &nbsp; <button class="btn btn-danger perspective" onclick="occuSearch2()">Reservant Search</button>  &nbsp; <button class="btn btn-danger perspective" onclick="occuFin()">Change Reservant\'s Status</button> </p> ';
+					main.html(data);
+					
+				});
+
+			}
+			function systemConfiguration(){
+
+				$(function(){
+
+					var main = $("#system_options");
+
+					var data = '<p> <button class="btn btn-warning perspective"  onclick="sysBackup()">System Backup</button>   &nbsp; <button class="btn btn-warning perspective disabled"  onclick="sysRestore()">System Restore</button>   &nbsp; <button class="btn btn-warning perspective"  onclick="sysClear()">Clear Old Backup</button>   &nbsp; <button class="btn btn-warning perspective"  onclick="sysEnable()">Enable Reservation</button>   &nbsp; <button class="btn btn-warning perspective"  onclick="sysDisable()">Disable Reservation</button>  </p>';
+					main.html(data);
+					
+				});
+			}
+
+		</script>
 		
 
 	</body>
 </html>
+
+
+  
+
+

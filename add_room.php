@@ -16,7 +16,12 @@ class room{
 		include "admin_tools.php";
 		
 		if(@$start != '' &&  @$residence != '' && @$capacity != ''){
-			if( (@$stop - @$start) > 30000){echo '<script>alert("Please add records exceeding 30,000 in sequences to avoid memory errors!");</script>'; die;}
+            if( (@$stop - @$start) > 30000){
+                die ('<div class="alert alert-warning alert-bold-border fade in alert-dismissable">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <strong>Warning!</strong><br>  Please add rooms in portions of 30,000 or less. <br> <a href="#" class="alert-link">  </a>.
+                        </div>');
+            }
 			$this->start 		= $start;
 			$this->residence 	= $residence;
 			$this->capacity 	= $capacity;
@@ -25,10 +30,11 @@ class room{
 		}else{
 			$id = $this->id;
 			include 'main.php';
-			echo "<script>alert('Please re-enter the required details!');</script>";
-			$redirect = new redirect('new_room.php');
-			die(); 
-		}
+            die ('<div class="alert alert-danger alert-bold-border fade in alert-dismissable">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <strong>Error:</strong><br>  Please re-enter the required details! <br> <a href="#" class="alert-link">  </a>.
+                        </div>');
+			}
 	}
 	
 	public function add_room(){
@@ -43,14 +49,24 @@ class room{
 		$connection->query("INSERT INTO $this->tbl_name (r_number, max_capacity, curr_capacity, residence, available) VALUES ('$this->start','$this->capacity', 0, '$this->residence', 1)", true);		
 			
 		if($_SESSION['query']){
-			echo "<script>alert('Successfully inserted');</script> Room Added! <br/> Would you like to ... <br />
-				  <a href='javascript:history.back(1);'>Go back.</a> <br/><a href='new_room.php'>Add more rooms.</a> ";
-		}
+            die ('<div class="alert alert-success alert-bold-border fade in alert-dismissable">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <strong>Success:</strong><br> Successfully added room. <br> <a href="#" class="alert-link">  </a>.
+                        </div>');			
+		}else{
+            
+            die ('<div class="alert alert-danger alert-bold-border fade in alert-dismissable">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <strong>Error:</strong><br> Failed to add room! <br> <a href="#" class="alert-link">  </a>.
+                        </div>');
+            
+        }
 		
 		
 	}
 	
-	
+
+    
 	public function add_rooms(){
 		
 		$id = $this->id;
@@ -60,41 +76,41 @@ class room{
 		
 		$_SESSION['query_error'] = "";
 		
+        $progress = "<code style='color: teal; overflow: none; '>";
+    
 		$mYdata = array();
 		for($this->start; $this->start <= $this->stop; ($this->start+=1)){
 			/*Test Area*/
 			
+			$progress .= "{$this->start},";
 			$mYdata[] = "('".$this->start."','".$this->capacity."', '0','".$this->residence."', '1')";
 			
-			print("Processing room <code style='color:#F00'>".$this->start)."</code> ... ";
+            
 			
 			/*End of test Area*/
 		}
 		$valDataz = implode(", ", $mYdata);
 		$_SESSION['query_error'] = "";
 		$connection->query("INSERT INTO $this->tbl_name(r_number, max_capacity, curr_capacity, residence, available) VALUES $valDataz ",false);
-		if($_SESSION['query']){echo " .... <code style='color:green;'> Done! </code> <br />";}else{echo " .... <code style='color:red;'> Error! </code> <br />";}
-		/*		
-		 print("Processing room <code style='color:#F00'>".$this->start)."</code>";
-			$connection->query("INSERT INTO $this->tbl_name(r_number, max_capacity, curr_capacity, residence, available) VALUES ('$this->start','$this->capacity', 0, '$this->residence', 1)", false);
-			
-			if($_SESSION['query']){echo " .... <code style='color:green;'> Done! </code> <br />";}else{echo " .... <code style='color:red;'> Error! </code> <br />";}
-		 */
-		 $numz = count($_SESSION['query_error']);
-			 if( $numz <> 0){
-				 	echo '<h3>The following errors were encountered</h3>';
-				 
-				 for($i = 0; $i < $numz; $i++){
-				 	echo $_SESSION['query_error'][$i]."<br />";
-				 }
-				unset($_SESSION['query_error']);
-			}
+		if($_SESSION['query']){
+            $success = true;            
+        }else{
+           $success = false;
+        }
+    
+        $progress .= " <br><br>Room Initialization complete</code>";
+    
 			//Comment the statements below enable the viewing of errors that occur during room addition processing
 			//Remember to add a 'Go back' link / Button
-			echo '<script>alert("Rooms Added!\n\n ERRORS" + '.@json_encode(implode("\n\n", $_SESSION['query_error'])) .' + "");</script>';
-			$go = new redirect('new_room.php');
-			exit;
-						
+    
+            $class = ( $success ) ? "alert-success" : "alert-danger";
+            $title = ( $success ) ? " Success:  " : "Error: ";
+            $message = ( $success ) ? " Rooms Successfully Added! " : " Failed to process the room addition request. ";
+            
+        die ('<div class="alert '. $class .' alert-bold-border fade in alert-dismissable">
+			  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+			  <strong>'.$title.'</strong><br> '.$message.'<br> <strong> PROCESS LOG: </strong> <br> '.$progress.' <br> <a href="#" class="alert-link"><br> <strong> Technical Issues Encountered: </strong> </a><br><code style="color: red;"> '. implode("<br>", @$_SESSION['query_error']) .' </code> </div>');
+									
 	}
 	
 	

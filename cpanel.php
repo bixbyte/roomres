@@ -50,7 +50,6 @@
 		<link href="assets/plugins/icheck/skins/all.css" rel="stylesheet">
 		<link href="assets/plugins/datepicker/datepicker.min.css" rel="stylesheet">
 		<link href="assets/plugins/timepicker/bootstrap-timepicker.min.css" rel="stylesheet">
-		<link href="assets/plugins/validator/bootstrapValidator.min.css" rel="stylesheet">
 		<link href="assets/plugins/summernote/summernote.min.css" rel="stylesheet">
 		<link href="assets/plugins/markdown/bootstrap-markdown.min.css" rel="stylesheet">
 		<link href="assets/plugins/datatable/css/bootstrap.datatable.min.css" rel="stylesheet">
@@ -278,32 +277,10 @@
 						
 					</style>
 						<div id="system_options" style="padding-top: 0.5em;">
-							<div>
-							    <input type="text" class="mbtn" placeholder="First Room" id="roomAddfroom"> &nbsp;
-							    <input type="text" class="mbtn" placeholder="nth room" id="roomAddlroom"><br><br>
-                                <input type="text" class="mbtn" placeholder="Room Capacity" id="roomAddcapacity">&nbsp;
-                                <select id="roomAddresidence" class="mbtn">
-                                    
-                                </select>
-                                <br><br>
-                                <button class="btn btn-info" id="addRoom"> Add Room(s) </button>
-							</div>
-							<script>
-							   
-                                $(function(){
-                                    
-                                    $("#addRoom").on("click", function(){
-                                        
-                                        room_start = $("#roomAddfroom");
-                                        room_end   = $("#roomAddlroom");
-                                        room_capacity = $("#roomAddcapacity");
-                                        residence = $("#roomAddresidence");
-                                        act = "new_room";
-                                        
-                                    });
-                                    
-                                });
-                                
+						<script>
+
+							
+                             
 							</script>
 						</div>
 					</div>
@@ -399,6 +376,21 @@
 		<script src="assets/js/apps.js"></script>
 		<script>
 
+
+			function loadResidenceLists( objectID ){
+	
+				$.post('residences.php',
+	                       {},
+	                      function( response ){
+	                        
+	                        var res = "";
+	                        for( item in response ){                                            
+	                            res += '<option value="' + response[item].id + '" > ' + response[item].name + ' </option>';
+	                        }
+	                        $("#" + objectID).html( res );
+	                });	
+				
+			}
 			
 			function residenceManagement(){
 
@@ -427,21 +419,21 @@
 
                     $("#addRes").on("click" , function(){ 
 
-                        gender = $("#resAddGender").val();
-                        resname = $("#resAddName").val();
+                        var gender = $("#resAddGender").val();
+                        var resname = $("#resAddName").val();
 
                         if( resname.length < 4 ){
 
                             $("#resAddName").focus();
 
                         }else{
-
+                            
+                            $('#addRes').addClass(' disabled ');
                             $.post("proc_adds.php", 
                                    { act: "new_residence", gender: gender  , name: resname },
                                    function( response ){
                                 $("#system_options").html( response );
-                            }
-                                  );
+                            }); 
                         }
                     });
                 });	
@@ -492,6 +484,114 @@
 				});
 			}
 
+			function roomAdd(){
+
+				$(function(){
+
+                	$("#system_options").html('<strong style="color: #37BC9B;" ><div><input type="text" class="mbtn" placeholder="First Room" id="roomAddfroom"> &nbsp;<input type="text" class="mbtn" placeholder="nth room" id="roomAddlroom"><br><br><input type="text" class="mbtn" placeholder="Room Capacity" id="roomAddcapacity">&nbsp;<select id="roomAddresidence" class="mbtn" style="text-transform: uppercase; color: gray;"></select><br><br><button class="btn " style="color:white; background: #37BC9B;" id="addRoom"> Add Room(s) </button></div>');
+					                               
+                   /* Load the residence list to the select box */
+                    
+					loadResidenceLists( "roomAddresidence" );
+                                       
+                    $("#addRoom").on("click", function(){
+                        
+                        var room_start = $("#roomAddfroom");
+                        var room_end   = $("#roomAddlroom");
+                        var room_capacity = $("#roomAddcapacity");
+                        var residence = $("#roomAddresidence");
+                        var act = "new_room";
+                        
+                        if( room_start.val().length > 0  && !isNaN( room_start.val() ) ){
+                            
+                            if( room_capacity.val().length > 0 && !isNaN( room_capacity.val() ) ){
+                                
+                                if( residence.val() != "" && residence.val() != undefined  ){
+                                    
+                                    if( room_end.val().length != 0 ){
+                                        if( isNaN( room_end.val() )  ||  ( parseInt(room_end.val()) < parseInt(room_start.val()) ) ){
+                                            room_end.val('');
+                                        }
+                                    }
+                                    
+                                    $("#addRoom").addClass("disabled");
+                                    
+                                    $.post('proc_adds.php',
+                                           { 
+                                                act: "new_room",
+                                                room_start: room_start.val(),
+                                                room_end: room_end.val(),
+                                                room_capacity: room_capacity.val(),
+                                                residence: residence.val()
+                                            },
+                                          function( response ){
+                                        $("#system_options").html( response );
+                                    });
+                                    
+                                }else{
+                                    residence.focus();
+                                }
+                                
+                            }else{
+                                room_capacity.focus();
+                            }
+                            
+                        }else{
+                            room_start.focus();
+                        }
+                        
+                    });
+                    
+                });
+				
+			}
+
+
+			/* Manage Room Availability */
+			function roomAvail(){
+
+				loadResidenceLists("reserveResidence");
+				   
+                $('#system_options').html('<strong style="color: #37BC9B;">Manage Room Availability</strong><br><div><input type="text" class="mbtn" placeholder="First Room" id="room_start"> &nbsp;<input type="text" class="mbtn" placeholder="nth room" id="room_end"><br><br><select id="reserveResidence" class="mbtn" style="text-transform: uppercase;"></select><br><br><button class="btn" style="background: #37BC9B; color: white;" id="specialReserve"> Special Reservation </button></div>');   
+
+                $("#specialReserve").on('click', function(){
+
+					var residence =  $("#reserveResidence");
+					var room_start = $("#room_start");
+					var room_end = $("#room_end");
+
+					/* SIMPLE VALIDATION */
+					
+					if( room_start.val().length > 0 ){ 
+
+						if( parseInt( room_start.val() ) >  parseInt( room_end.val() ) ){
+							room_end.val('');
+						} 
+
+						$.post('proc_adds.php',
+								{ 
+									act : "new_room_residence",
+									residence: residence.val(),
+									room_start: room_start.val(),
+									room_end: room_end.val() 
+								},
+								function( response ){
+							console.log("Mothership\'s response: " + response);
+							$("#system_options").html(response);
+									
+						});
+						
+						
+					}else{
+						room_start.focus();
+					}					
+              	 
+                });
+	
+				
+			}
+
+			
 		</script>
 		
 

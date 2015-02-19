@@ -4,6 +4,7 @@
 	For: The University Of Eastern Africa Baraton
 */
 @session_start();
+
 class admin_room{
 	
 	private $id = "admin_rooms.php";
@@ -15,8 +16,7 @@ class admin_room{
 		
 		include "admin_tools.php";
 		
-		/* die('<script>alert(" " + '.@json_encode($start).' + " " + '.@json_encode($residence).' + " "); history.back();</script>'); */ 
-		
+				
 		if(@$start != '' &&  @$residence != '' ){
 			
 			$this->start 		= $start;
@@ -26,9 +26,10 @@ class admin_room{
 		}else{
 			$id = $this->id;
 			include 'main.php';
-			echo "<script>alert('Please re-enter the required details!');</script>";
-			$redirect = new redirect('room_availability.php');
-			die(); 
+			die ('<div class="alert alert-warning alert-bold-border fade in alert-dismissable">
+			  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+			  <strong>Warning: </strong><br> Please re-enter the required details! <br> <a href="#" class="alert-link">TRY AGAIN</a>.
+			</div>');
 		}
 	}
 	
@@ -44,8 +45,10 @@ class admin_room{
 		$connection->query("UPDATE $this->tbl_name  SET available=0 WHERE r_number='$this->start' AND residence='$this->residence' ", true);		
 			
 		if($_SESSION['query']){
-			echo "<script>alert('Room Specially Reserved!'); history.back();</script>";
-			exit; 
+			die ('<div class="alert alert-success alert-bold-border fade in alert-dismissable">
+			  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+			  <strong>SUCCESS: </strong><br> Room specially reserved! .
+			</div>');
 		}
 		
 		
@@ -61,28 +64,40 @@ class admin_room{
 		
 		$_SESSION['query_error'] = "";
 		
-		echo "<center><h2><code style='color:#F00;'>Processing Complete!</code> &nbsp; &nbsp;<code style='color:green;'><a href='javascript:history.back();'>GO Back </a></code> </h2></center>";	
+		$room_response =  " <h4><code style='color:blue;'>Adding room(s) ".$this->start." ==> ".$this->stop." </code> </h4> ";	
 		
 		for($this->start; $this->start <= $this->stop; ($this->start+=1)){
 			
-			print("Processing room <code style='color:#F00'>".$this->start)."</code>";
-			
+						
 			$connection->query("UPDATE $this->tbl_name SET available=0 WHERE r_number='$this->start' AND residence='$this->residence'", false);
 			
-			if($_SESSION['query']){echo " .... <code style='color:green;'> Done! </code> <br />";}else{echo " .... <code style='color:red;'> Error! </code> <br />";}
+			if(!$_SESSION['query']){
+				
+				$room_response .= " Room {$this->start} ... <code style='color:red;'> Error! </code> <br /> ";
+				
+				
+			}
 			 
 			
 		}
-		 
 		 $numz = count($_SESSION['query_error']);
+		 
 			 if( $numz <> 0){
-				 	echo '<h3>The following errors were encountered</h3>';
+			 	
+				 $room_response .=  " <h5> </h5> ";
 				 
 				 for($i = 0; $i < $numz; $i++){
-				 	echo $_SESSION['query_error'][$i]."<br />";
+				 	
+				 	$room_response .= $_SESSION['query_error'][$i]."<br />";
+				 	
 				 }
 				unset($_SESSION['query_error']);
 			}
+			
+			die ('<div class="alert alert-info alert-bold-border fade in alert-dismissable">
+			  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+			  '.$room_response.'<code style="color: green;"><strong>Done!</strong></code>
+			</div>');
 			
 						
 	}
@@ -101,8 +116,10 @@ class admin_room{
 		$connection->query("UPDATE $this->tbl_name  SET available=1 WHERE r_number='$this->start' AND residence='$this->residence' ", true);		
 			
 		if($_SESSION['query']){
-			echo "<script>alert('ROOM MADE AVAILABLE FOR BOOKING!'); history.back();</script>";
-			exit; 
+			die ('<div class="alert alert-success alert-bold-border fade in alert-dismissable">
+			  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+			  <strong>SUCCESS: </strong><br> Room made available for booking! .
+			</div>');
 		}
 		
 	}
@@ -149,8 +166,7 @@ class admin_room{
 }
 
 
-
-
+//$rooms = new admin_room( $argv[1], $argv[2], $argv[3] );
 
 
 ?>

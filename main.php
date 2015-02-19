@@ -5,6 +5,8 @@
 */
 
 /* Database connection variables ... and more! */
+header('X-Powered-By: iara-m4labs');
+
 @session_start();
 
 $inactive = 18000000000000000;

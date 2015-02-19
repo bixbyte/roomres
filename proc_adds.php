@@ -197,7 +197,90 @@ switch (@$_REQUEST['act']){
         exit;
 
     break;
+    
+    /* Handle Room Addition Requests */
+    case "new_room":
 
+        $start 		= @sanitize($_REQUEST['room_start']);
+        $stop  		= @sanitize($_REQUEST['room_end']);
+        $residence 	= @sanitize($_REQUEST['residence']);
+        $capacity  	= @sanitize($_REQUEST['room_capacity']);
+
+        include "add_room.php";
+        $new_room = new room($start, $stop, $residence, $capacity);
+
+        if(@sanitize($start) != '' && @sanitize($stop) != ''){
+            $new_room->add_rooms();
+        }else{
+            $new_room->add_room();
+        }
+
+        unset($new_room);
+        exit;
+
+    break;
+
+    
+    /* Specially Reserve Rooms */
+    case "new_room_residence":    
+    		
+    	if(@sanitize($_REQUEST['room_start']) != ''):
+    		
+	    	$start 		= @sanitize($_REQUEST['room_start']);
+	    	$stop  		= @sanitize($_REQUEST['room_end']);
+	    	$residence 	= @sanitize($_REQUEST['residence']);
+	    
+	    	include "admin_rooms.php";
+	    	
+		    	$new_room = new admin_room($start, $stop, $residence);
+		    
+		    	if(@sanitize($start) != '' && @sanitize($stop) != ''){
+		    		$new_room->add_rooms();
+		    	}else{
+		    		$new_room->add_room();
+		    	}
+		    	
+		    unset($new_room);
+		    exit;
+    
+    	elseif(@sanitize($_REQUEST['room_start_1']) != '') :
+    
+	    	$start 		= @sanitize($_REQUEST['room_start_1']);
+	    	$stop  		= "";
+	    	$residence 	= @sanitize($_REQUEST['residence_1']);
+	    
+	    	include "admin_rooms.php";
+	    	$new_room = new admin_room($start, $stop, $residence);
+	    	$new_room->one_avail();
+	    	unset($new_room);
+	    	exit;
+    
+    	elseif(@sanitize($_REQUEST['room_start_2']) != ''):
+	    	
+    		echo "Good!";
+    	
+	    	$start 		= @sanitize($_REQUEST['room_start_2']);
+	    	$stop  		= @sanitize($_REQUEST['room_end_2']);
+	    	$residence 	= @sanitize($_REQUEST['residence_2']);
+    
+	    	include "admin_rooms.php";
+	    	$new_room = new admin_room($start, $stop, $residence);
+    
+    	if(@$stop != ''){
+    		$new_room->many_avail();
+    	}else{
+    		$new_room->one_avail();
+    	}
+    	unset($new_room);
+    	exit;
+    	 
+    	endif;
+    
+    
+    break;
+    
+    
+    
 	default: 
 		die ('<div class="alert alert-danger alert-bold-border fade in alert-dismissable">
 			  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>

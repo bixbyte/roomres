@@ -75,8 +75,20 @@ class connection{
 		$_SESSION['num_rows'] = mysqli_num_rows( $stmt );
 				
 	}
+
+    public function printQueryResults( $statement, $stops ){
+
+        $this->query($statement, $stops);
+
+        $resArray = array();
+        while( $response = mysqli_fetch_assoc( $_SESSION['query'] ) ){
+            $resArray[] = $response;
+        }
+
+        return $resArray;
+
+    }
 	
 //End of Class	
 }
 
-	

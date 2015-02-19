@@ -192,7 +192,7 @@
 				<div class="container-fluid">
 				
 				<!-- Begin page heading -->
-				<h1 class="page-heading ">DASHBOARD <small></small></h1>
+                    <h1 class="page-heading "><small style="color: color:#666;"><strong style="color: #555;">ADMINISTRATOR</strong> >> DASHBOARD </small></h1>
 				<!-- End page heading -->
 				
 				
@@ -454,7 +454,7 @@
 
 					var main = $("#system_options");
 
-					var data = '<p> <button class="btn btn-primary perspective"  onclick="roomAdd()">Add Rooms</button>   &nbsp; <button class="btn btn-primary perspective" onclick="roomAvail()">Manage room Availability</button> </p>';
+                    var data = '<p> <button class="btn btn-primary perspective"  onclick="roomAdd()">Add Rooms</button>   &nbsp; <button class="btn btn-primary perspective" onclick="roomAvail()">Manage room Availability</button>  &nbsp; <button class="btn btn-primary perspective" onclick="roomAvail()">Manage room Availability</button>  &nbsp; <button class="btn btn-primary perspective" onclick="roomUnAvail()">Specially Reserved Rooms</button>  </p>';
 					main.html(data);
 					
 				});
@@ -488,7 +488,7 @@
 
 				$(function(){
 
-                	$("#system_options").html('<strong style="color: #37BC9B;" ><div><input type="text" class="mbtn" placeholder="First Room" id="roomAddfroom"> &nbsp;<input type="text" class="mbtn" placeholder="nth room" id="roomAddlroom"><br><br><input type="text" class="mbtn" placeholder="Room Capacity" id="roomAddcapacity">&nbsp;<select id="roomAddresidence" class="mbtn" style="text-transform: uppercase; color: gray;"></select><br><br><button class="btn " style="color:white; background: #37BC9B;" id="addRoom"> Add Room(s) </button></div>');
+                	$("#system_options").html('<strong style="color: #37BC9B;" >Room Addition</strong><br><div><input type="text" class="mbtn" placeholder="First Room" id="roomAddfroom"> &nbsp;<input type="text" class="mbtn" placeholder="nth room" id="roomAddlroom"><br><br><input type="text" class="mbtn" placeholder="Room Capacity" id="roomAddcapacity">&nbsp;<select id="roomAddresidence" class="mbtn" style="text-transform: uppercase;"></select><br><br><button class="btn " style="color:white; background: #37BC9B;" id="addRoom"> Add Room(s) </button></div>');
 					                               
                    /* Load the residence list to the select box */
                     
@@ -547,12 +547,15 @@
 			}
 
 
-			/* Manage Room Availability */
+			/**
+            * Manage Room Availability
+            * [Make room[s] unavailable]
+            */
 			function roomAvail(){
 
 				loadResidenceLists("reserveResidence");
 				   
-                $('#system_options').html('<strong style="color: #37BC9B;">Manage Room Availability</strong><br><div><input type="text" class="mbtn" placeholder="First Room" id="room_start"> &nbsp;<input type="text" class="mbtn" placeholder="nth room" id="room_end"><br><br><select id="reserveResidence" class="mbtn" style="text-transform: uppercase;"></select><br><br><button class="btn" style="background: #37BC9B; color: white;" id="specialReserve"> Special Reservation </button></div>');   
+                $('#system_options').html('<strong style="color: #37BC9B;">Special Room Reservation</strong><br><div><input type="text" class="mbtn" placeholder="First Room" id="room_start"> &nbsp;<input type="text" class="mbtn" placeholder="nth room" id="room_end"><br><br><select id="reserveResidence" class="mbtn" style="text-transform: uppercase;"></select><br><br><button class="btn" style="background: #37BC9B; color: white;" id="specialReserve"> Reserve Room(s)</button></div>');
 
                 $("#specialReserve").on('click', function(){
 
@@ -576,7 +579,7 @@
 									room_end: room_end.val() 
 								},
 								function( response ){
-							console.log("Mothership\'s response: " + response);
+
 							$("#system_options").html(response);
 									
 						});
@@ -591,6 +594,33 @@
 				
 			}
 
+            /**
+            * Manage Room Availability
+            * [Make room[s] available]
+            */
+            function roomUnAvail(){
+
+                $(function(){
+
+                    $.post('room_unavailable.php', function( data ){
+
+
+                        rooms = data.rooms
+                        reslist = data.residences
+
+                        for( room in rooms ){
+
+                            $("#system_options").append('<div class="alert " ><input type="text" class="mbtn" disabled style="margin-right: 1em;" value="'+ rooms[room].r_number +'" > <input type="text" class="mbtn" disabled value="' + reslist[rooms[room].residence] +'" ><input type="hidden" id="txt" name="room_start_1" value="4" > <button class="btn"></button>');
+
+                        }
+
+                        console.log(rooms);
+                    })
+
+                });
+
+            }
+roomUnAvail()
 			
 		</script>
 		

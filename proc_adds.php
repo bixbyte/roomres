@@ -222,7 +222,7 @@ switch (@$_REQUEST['act']){
 
     
     /* Specially Reserve Rooms */
-    case "new_room_residence":    
+    case "new_room_reserve":    
     		
     	if(@sanitize($_REQUEST['room_start']) != ''):
     		

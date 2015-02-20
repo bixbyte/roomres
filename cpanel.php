@@ -454,7 +454,7 @@
 
 					var main = $("#system_options");
 
-                    var data = '<p> <button class="btn btn-primary perspective"  onclick="roomAdd()">Add Rooms</button>   &nbsp; <button class="btn btn-primary perspective" onclick="roomAvail()">Manage room Availability</button>  &nbsp; <button class="btn btn-primary perspective" onclick="roomAvail()">Manage room Availability</button>  &nbsp; <button class="btn btn-primary perspective" onclick="roomUnAvail()">Specially Reserved Rooms</button>  </p>';
+                    var data = '<p> <button class="btn btn-primary perspective"  onclick="roomAdd()">Add Rooms</button>   &nbsp; <button class="btn btn-primary perspective" onclick="roomAvail()">Manage room Availability</button>  &nbsp; <button class="btn btn-primary perspective" onclick="roomUnAvail()">Specially Reserved Rooms</button>  </p>';
 					main.html(data);
 					
 				});
@@ -573,7 +573,7 @@
 
 						$.post('proc_adds.php',
 								{ 
-									act : "new_room_residence",
+									act : "new_room_reserve",
 									residence: residence.val(),
 									room_start: room_start.val(),
 									room_end: room_end.val() 
@@ -607,20 +607,40 @@
 
                         rooms = data.rooms
                         reslist = data.residences
-
+                        $ress = '<strong style="color: #37BC9B;">Specially Reserved Rooms</strong><br>';
+                        
                         for( room in rooms ){
 
-                            $("#system_options").append('<div class="alert " ><input type="text" class="mbtn" disabled style="margin-right: 1em;" value="'+ rooms[room].r_number +'" > <input type="text" class="mbtn" disabled value="' + reslist[rooms[room].residence] +'" ><input type="hidden" id="txt" name="room_start_1" value="4" > <button class="btn"></button>');
+                            $ress += '<div class="panel panel-primary col col-lg-6" ><input type="text" class="mbtn bg-primary col-lg-4" disabled style="" value="'+ rooms[room].r_number +'" > <input type="text" class="mbtn bg-danger col-lg-4" disabled title="' + reslist[rooms[room].residence] +'" value="' + reslist[rooms[room].residence] +'" ><button class="btn btn-warning perspective col-lg-4" style=" " onclick="makeAvailable( '+ rooms[room].r_number +', '+ rooms[room].residence +' )" > Make Available </button></div>';
 
                         }
-
-                        console.log(rooms);
+                        $("#system_options").html($ress);
+                        
                     })
 
                 });
 
             }
-roomUnAvail()
+
+
+
+        /* 
+            Mark a Single Room as available for booking 
+        */
+        function makeAvailable( room , residence ){
+            
+            $.post('proc_adds.php',
+                   {
+                        act : "new_room_reserve",
+                        room_start_1 : room,
+                        residence_1: residence
+                    },
+                  function( response ){
+                   $("#system_options").html( response );
+                setTimeout(function(){ roomUnAvail(); }, 5000 );
+            });
+            
+        }
 			
 		</script>
 		

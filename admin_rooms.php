@@ -33,6 +33,9 @@ class admin_room{
 		}
 	}
 	
+    /**
+    *   Specially reserve a single room
+    */
 	public function add_room(){
 		
 		$id = $this->id;
@@ -54,7 +57,9 @@ class admin_room{
 		
 	}
 	
-	
+	/**
+    *   Specially reserve multiple rooms
+    */
 	public function add_rooms(){
 		
 		$id = $this->id;
@@ -64,7 +69,7 @@ class admin_room{
 		
 		$_SESSION['query_error'] = "";
 		
-		$room_response =  " <h4><code style='color:blue;'>Adding room(s) ".$this->start." ==> ".$this->stop." </code> </h4> ";	
+		$room_response =  " <h4><code style='color:blue;'>Specially reserving room(s) ".$this->start." ==> ".$this->stop." </code> </h4> ";	
 		
 		for($this->start; $this->start <= $this->stop; ($this->start+=1)){
 			
@@ -103,7 +108,9 @@ class admin_room{
 	}
 	
 	
-	//Make one room available
+	/**
+    *   Make a single room available for reservation
+    */
 	public function one_avail(){
 		
 		$id = $this->id;
@@ -118,13 +125,15 @@ class admin_room{
 		if($_SESSION['query']){
 			die ('<div class="alert alert-success alert-bold-border fade in alert-dismissable">
 			  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-			  <strong>SUCCESS: </strong><br> Room made available for booking! .
+			  <strong>SUCCESS: </strong><br> Room <code>'.$this->start.'</code> made available for booking! .
 			</div>');
 		}
 		
 	}
 	
-	//Make many rooms available
+	/**
+    *   Make multiple rooms available for reservation
+    */
 	public function many_avail(){
 		
 		$id = $this->id;

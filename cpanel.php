@@ -397,12 +397,10 @@
 				/* Display the residence management options */
 				
 				$(function(){
-
-					var main = $("#system_options");
-					
-					var data = '<p> <button class="btn btn-success perspective" onclick="resAdd()">Add Residence</button>  &nbsp; <button class="btn btn-success perspective disabled" onclick="resList()">Residence Occupant Lists</button>  &nbsp; <button class="btn btn-success perspective disabled"  onclick="resMan()"> Residence Management </button> </p>';
-					main.html(data);
-					
+                    
+                    window.location="#system_options";
+					$("#system_options").html('<p> <button class="btn btn-success perspective" onclick="resAdd()">Add Residence</button>  &nbsp; <button class="btn btn-success perspective disabled" onclick="resList()">Residence Occupant Lists</button>  &nbsp; <button class="btn btn-success perspective disabled"  onclick="resMan()"> Residence Management </button> </p>');
+										
 				});
 				
 				/* Add new Residence */				
@@ -415,7 +413,7 @@
 
                 $(function(){
 
-                    $("#system_options").html('<div style="" ><input type="text" id="resAddName" class="mbtn"  style="border:1px solid gray; color: green;" placeholder="Residence Name"> &nbsp;<select id="resAddGender" class=" mbtn " style="color: gray; font-weight: normal;"><option value="m" selected>Male</option><option value="f">Female</option><option value="a">Either</option></select>&nbsp;<button id="addRes" class="btn btn-success" style="color: white;"> Add Residence </button></div>');
+                    $("#system_options").html('<strong class="text-success" > Residence Addition</strong><br><div style="" ><input type="text" id="resAddName" class="mbtn"  style="border:1px solid gray; color: green;" placeholder="Residence Name"> &nbsp;<select id="resAddGender" class=" mbtn " style="color: gray; font-weight: normal;"><option value="m" selected>Male</option><option value="f">Female</option><option value="a">Either</option></select>&nbsp;<button id="addRes" class="btn btn-success" style="color: white;"> Add Residence </button></div>');
 
                     $("#addRes").on("click" , function(){ 
 
@@ -452,11 +450,9 @@
 
 				$(function(){
 
-					var main = $("#system_options");
-
-                    var data = '<p> <button class="btn btn-primary perspective"  onclick="roomAdd()">Add Rooms</button>   &nbsp; <button class="btn btn-primary perspective" onclick="roomAvail()">Manage room Availability</button>  &nbsp; <button class="btn btn-primary perspective" onclick="roomUnAvail()">Specially Reserved Rooms</button>  </p>';
-					main.html(data);
-					
+                    window.location="#system_options";
+                    $("#system_options").html('<p> <button class="btn btn-primary perspective"  onclick="roomAdd()">Add Rooms</button>   &nbsp; <button class="btn btn-primary perspective" onclick="roomAvail()">Manage room Availability</button>  &nbsp; <button class="btn btn-primary perspective" onclick="roomUnAvail()">Specially Reserved Rooms</button>  </p>');
+										
 				});
 				
 			}
@@ -464,10 +460,9 @@
 
 				$(function(){
 
-					var main = $("#system_options");
-
-					var data = '<p><button class="btn btn-danger perspective"  onclick="occuReset()">Reservation Reset</button>   &nbsp; <button class="btn btn-danger perspective" onclick="occuSearch()">Comprehensive search</button> &nbsp; <button class="btn btn-danger perspective" onclick="occuSearch2()">Reservant Search</button>  &nbsp; <button class="btn btn-danger perspective" onclick="occuFin()">Change Reservant\'s Status</button> </p> ';
-					main.html(data);
+                    window.location="#system_options";
+					$("#system_options").html('<p><button class="btn btn-danger perspective"  onclick="occuReset()">Reservation Reset</button>   &nbsp; <button class="btn btn-danger perspective" onclick="occuSearch()">Comprehensive search</button> &nbsp; <button class="btn btn-danger perspective" onclick="occuSearch2()">Reservant Search</button>  &nbsp; <button class="btn btn-danger perspective" onclick="occuFin()">Change Reservant\'s Status</button> </p> ');
+					
 					
 				});
 
@@ -476,10 +471,10 @@
 
 				$(function(){
 
-					var main = $("#system_options");
-
-					var data = '<p> <button class="btn btn-warning perspective"  onclick="sysBackup()">System Backup</button>   &nbsp; <button class="btn btn-warning perspective disabled"  onclick="sysRestore()">System Restore</button>   &nbsp; <button class="btn btn-warning perspective"  onclick="sysClear()">Clear Old Backup</button>   &nbsp; <button class="btn btn-warning perspective"  onclick="sysEnable()">Enable Reservation</button>   &nbsp; <button class="btn btn-warning perspective"  onclick="sysDisable()">Disable Reservation</button>  </p>';
-					main.html(data);
+					
+                    window.location="#system_options";
+					$("#system_options").html('<p> <button class="btn btn-warning perspective"  onclick="sysBackup()">System Backup</button>   &nbsp; <button class="btn btn-warning perspective disabled"  onclick="sysRestore()">System Restore</button>   &nbsp; <button class="btn btn-warning perspective"  onclick="sysClear()">Clear Old Backup</button>   &nbsp; <button class="btn btn-warning perspective"  onclick="sysEnable()">Enable Reservation</button>   &nbsp; <button class="btn btn-warning perspective"  onclick="sysDisable()">Disable Reservation</button>  </p>');
+					
 					
 				});
 			}
@@ -488,6 +483,7 @@
 
 				$(function(){
 
+                    
                 	$("#system_options").html('<strong style="color: #37BC9B;" >Room Addition</strong><br><div><input type="text" class="mbtn" placeholder="First Room" id="roomAddfroom"> &nbsp;<input type="text" class="mbtn" placeholder="nth room" id="roomAddlroom"><br><br><input type="text" class="mbtn" placeholder="Room Capacity" id="roomAddcapacity">&nbsp;<select id="roomAddresidence" class="mbtn" style="text-transform: uppercase;"></select><br><br><button class="btn " style="color:white; background: #37BC9B;" id="addRoom"> Add Room(s) </button></div>');
 					                               
                    /* Load the residence list to the select box */
@@ -647,8 +643,3 @@
 
 	</body>
 </html>
-
-
-  
-
-

@@ -456,6 +456,8 @@
 				});
 				
 			}
+            
+            
 			function reservantManagement(){
 
 				$(function(){
@@ -467,6 +469,8 @@
 				});
 
 			}
+            
+            
 			function systemConfiguration(){
 
 				$(function(){
@@ -479,6 +483,7 @@
 				});
 			}
 
+            
 			function roomAdd(){
 
 				$(function(){
@@ -590,6 +595,8 @@
 				
 			}
 
+            
+            
             /**
             * Manage Room Availability
             * [Make room[s] available]
@@ -598,26 +605,32 @@
 
                 $(function(){
 
-                    $.post('room_unavailable.php', function( data ){
+                    $.post('room_unavailable.php', function( data, status, xhr ){
 
+                        if( xhr.getResponseHeader('Content-Type') === "text/html" ){
+                           
+                           $("#system_options").html(data);
+                            
+                       }else{
+                    
+                            rooms = data.rooms
+                            reslist = data.residences
+                            $ress = '<strong style="color: #37BC9B;">Specially Reserved Rooms</strong><br>';
 
-                        rooms = data.rooms
-                        reslist = data.residences
-                        $ress = '<strong style="color: #37BC9B;">Specially Reserved Rooms</strong><br>';
-                        
-                        for( room in rooms ){
+                            for( room in rooms ){
 
-                            $ress += '<div class="panel panel-primary col col-lg-6" ><input type="text" class="mbtn bg-primary col-lg-4" disabled style="" value="'+ rooms[room].r_number +'" > <input type="text" class="mbtn bg-danger col-lg-4" disabled title="' + reslist[rooms[room].residence] +'" value="' + reslist[rooms[room].residence] +'" ><button class="btn btn-warning perspective col-lg-4" style=" " onclick="makeAvailable( '+ rooms[room].r_number +', '+ rooms[room].residence +' )" > Make Available </button></div>';
+                                $ress += '<div class="panel panel-primary col col-lg-6" ><input type="text" class="mbtn bg-primary col-lg-4" disabled style="" value="'+ rooms[room].r_number +'" > <input type="text" class="mbtn bg-danger col-lg-4" disabled title="' + reslist[rooms[room].residence] +'" value="' + reslist[rooms[room].residence] +'" ><button class="btn btn-warning perspective col-lg-4" style=" " onclick="makeAvailable( '+ rooms[room].r_number +', '+ rooms[room].residence +' )" > Make Available </button></div>';
 
-                        }
-                        $("#system_options").html($ress);
-                        
-                    })
+                            }
+                            $("#system_options").html($ress);
 
+                       }
+                    
+                    });
+                    
                 });
 
             }
-
 
 
         /* 

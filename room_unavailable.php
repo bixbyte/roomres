@@ -19,7 +19,7 @@ while($pa = mysqli_fetch_assoc($listed)){
 $qry = "SELECT * FROM rooms WHERE available='0'";
 $connection->num_rows($qry,true);
 
-if($_SESSION['num_rows'] <> false ){
+if($_SESSION['num_rows']){
     header("Content-Type:application/json ");
 
    die(   json_encode( array("rooms" => $connection->printQueryResults( $qry, true), "residences" => $resarr )  ));

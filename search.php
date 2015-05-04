@@ -12,7 +12,7 @@ class search {
 		 if(!empty($sstringy)):
 		 
 		 	
-			//Get the connection framework core files
+			//Get bixbyteframework core files
 			$id = "search.php";
 			$connect = true;
 			include "main.php";
@@ -58,53 +58,19 @@ class search {
 
 							<!-- BEGIN TIME CAT-->
 							<li class="center-timeline-cat">
-								<div class="inner">
-								<code style="color:red;">'.$nums.'</code><code> '.$trm.'</code>
-								</div><!-- /.inner -->
+								<div class="inner" style="max-height:40px; min-width:200px;">
+								<code style="color:red;">'.$nums.' '.$trm.'</code>
+								</div>
 							</li>
 							<!-- END TIME CAT-->
-						</ul>
-						<ul class="timeline">
+						
 						<!-- BEGIN CENTERING LINE -->
 						<li class="centering-line"></li>
 						<!-- END CENTERING LINE -->	
 					';
 			$detz = array();
 			while ($results = mysqli_fetch_array($relz)){
-				/*		
-				$atz .= '<center>
-				<div id="card_holder" ">
 				
-					<div id="card_mini_frame" >
-						<div id="card_pic"> </div>
-						<div id="card_dets">
-								
-								<div id="card_name">'.htmlentities($results['name']).'</div>  
-										 
-								<div id="card_contact">
-									<div id="card_email">'.htmlentities($results['email']).'</div>
-									<div id="card_tel">'.htmlentities($results['tel']) .'</div>
-								</div>
-								
-								<div id="card_specs" >
-									<div id="card_res" style="opacity:0.3;"><code>Residence</code></div>
-									<div id="card_room" style="opacity:0.3;"><code>Room</code></div>
-										
-									<div id="card_res" >'.@htmlentities($rezes[$results['res']]).'</div>
-									<div id="card_room">'.@htmlentities($results['rnum']).'</div>
-								</div>
-						</div>
-						
-						<div id="card_under_pic">
-						<br />
-						'.htmlentities($results['s_idnum']).'
-						</div>
-					</div>
-					
-				</div>
-				</center>
-				<br /><br />';
-                */
                 $atz .= '<!-- BEGIN ITEM TIMELINE -->
 						<li class="item-timeline">
 							<div class="buletan"></div>
@@ -145,14 +111,8 @@ class search {
 			
 			
 		else:
-			echo '<br><center><code class="text-danger">  AWAITING SEARCH INPUT </code></center>
-					<div class="spinner"> 
-					<div class="rect1"></div>
-					<div class="rect2"></div>
-					<div class="rect3"></div>
-					<div class="rect4"></div>
-					<div class="rect5"></div>
-				</div>';
+			 echo '<br><center><code class="text-danger">AWAITING SEARCH INPUT </code></center> <div class="spinner"><div class="rect1"></div><div class="rect2"></div><div class="rect3"></div><div class="rect4"></div><div class="rect5"></div></div>';
+            die;
 		endif;
 		
 		
@@ -166,7 +126,7 @@ class search {
 		if(!empty($sstringy)):
 		 
 		 	
-			//Get the connection framework core files
+			//Get bixbyteframework core files
 			$id = "search.php";
 			$connect = true;
 			include "main.php";
@@ -197,64 +157,29 @@ class search {
 			$relz = $_SESSION['query']; 
 			$nums = $_SESSION['num_rows'];
 			
-			if($nums != 1){ $trm = " Results Found. <br /><hr width='80%' align='center' />"; }else{ $trm = " Result Found. <br />
-			<code>Showing Results for people with reserved rooms only<br/></code><hr width='80%' align='center' />"; }
-			
+			if($nums != 1){ $trm = " Results Found. <br /><hr width='80%' align='center' />"; }else{ $trm = " Result Found. "; }
+     			
 			//echo "<center> <code style='color:red;'>".$nums."</code><code> ".$trm."</code> </center>";
-        echo       '
-						<ul class="timeline">
-							<li class="centering-line"></li>
-
+            echo  '<ul class="timeline">
+           <code>Showing Results for people with reserved rooms only<br/></code>
+							
 							<!-- BEGIN TIME CAT-->
 							<li class="center-timeline-cat">
-								<div class="inner">
-								<code style="color:red;">'.$nums.'</code><code> '.$trm.'</code>
-								</div><!-- /.inner -->
+								<div class="inner" style="max-height:40px; min-width:200px;">
+								<code style="color:red;">'.$nums.' '.$trm.'</code>
+								</div>
 							</li>
 							<!-- END TIME CAT-->
-						</ul>
-						<ul class="timeline">
+						
 						<!-- BEGIN CENTERING LINE -->
 						<li class="centering-line"></li>
-						<!-- END CENTERING LINE -->	
+						<!-- END CENTERING LINE -->
+                        
 					';
 			$detz = array();
 			while ($results = mysqli_fetch_array($relz)){
 			
-                /*
-				echo '<center>
-				<div id="card_holder" ">
-				
-					<div id="card_mini_frame" >
-						<div id="card_pic"> </div>
-						<div id="card_dets">
-								
-								<div id="card_name">'.htmlentities($results['name']).'</div>  
-										 
-								<div id="card_contact">
-									<div id="card_email">'.htmlentities($results['email']).'</div>
-									<div id="card_tel">'.htmlentities($results['tel']) .'</div>
-								</div>
-								
-								<div id="card_specs" >
-									<div id="card_res" style="opacity:0.3;"><code>Residence</code></div>
-									<div id="card_room" style="opacity:0.3;"><code>Room</code></div>
-										
-									<div id="card_res" >'.@htmlentities($rezes[$results['res']]).'</div>
-									<div id="card_room">'.@htmlentities($results['rnum']).'</div>
-								</div>
-						</div>
-						
-						<div id="card_under_pic">
-						<br />
-						'.htmlentities($results['s_idnum']).'
-						</div>
-					</div>
-					
-				</div>
-				</center>
-				<br /><br />';
-                */
+               
                 
                 echo '<!-- BEGIN ITEM TIMELINE -->
 						<li class="item-timeline">
@@ -294,14 +219,8 @@ class search {
 			
 			
 		else:
-        echo '<br><center><code class="text-danger">  AWAITING SEARCH INPUT </code></center>
-					<div class="spinner"> 
-					<div class="rect1"></div>
-					<div class="rect2"></div>
-					<div class="rect3"></div>
-					<div class="rect4"></div>
-					<div class="rect5"></div>
-				</div>';
+             echo '<br><center><code class="text-danger">AWAITING SEARCH INPUT </code></center> <div class="spinner"><div class="rect1"></div><div class="rect2"></div><div class="rect3"></div><div class="rect4"></div><div class="rect5"></div></div>';
+            die;
 		endif;
 	}
 	
@@ -314,7 +233,7 @@ class search {
 		if(!empty($sstringy)):
 		 
 		 	
-			//Get the connection framework core files
+			//Get bixbyteframework core files
 			$id = "search.php";
 			$connect = true;
 			include "main.php";
@@ -347,59 +266,25 @@ class search {
 			
 			if($nums != 1){ $trm = " Results Found. <br /><hr width='80%' align='center' />"; }else{ $trm = " Result Found. <br /><hr width='80%' align='center' />"; }
 			
-       echo  '<ul class="timeline">
-							<li class="centering-line"></li>
+           echo  '<ul class="timeline">
+                                <li class="centering-line"></li>
 
-							<!-- BEGIN TIME CAT-->
-							<li class="center-timeline-cat">
-								<div class="inner">
-								<code style="color:red;">'.$nums.'</code><br><code> '.$trm.'</code>
-								</div><!-- /.inner -->
-							</li>
-							<!-- END TIME CAT-->
-						</ul>
-						<ul class="timeline">
-						<!-- BEGIN CENTERING LINE -->
-						<li class="centering-line"></li>
-						<!-- END CENTERING LINE -->
-                        
-					';
+                                <!-- BEGIN TIME CAT-->
+                                <li class="center-timeline-cat">
+                                    <div class="inner" style="max-height:40px; min-width:200px;">
+                                    <code style="color:red;">'.$nums.' '.$trm.'</code>
+                                    </div>
+                                </li>
+                                <!-- END TIME CAT-->
+
+                            <!-- BEGIN CENTERING LINE -->
+                            <li class="centering-line"></li>
+                            <!-- END CENTERING LINE -->
+
+                        ';
 			$detz = array();
 			while ($results = mysqli_fetch_array($relz)){
-				/*		
-				echo '<center>
-				<div id="card_holder" ">
 				
-					<div id="card_mini_frame" >
-						<div id="card_pic"> </div>
-						<div id="card_dets">
-								
-								<div id="card_name">'.htmlentities($results['name']).'</div>  
-										 
-								<div id="card_contact">
-									<div id="card_email">'.htmlentities($results['email']).'</div>
-									<div id="card_tel">'.htmlentities($results['tel']) .'</div>
-								</div>
-								
-								<div id="card_specs" >
-									<div id="card_res" style="opacity:0.3;"><code>Residence</code></div>
-									<div id="card_room" style="opacity:0.3;"><code>Room</code></div>
-										
-									<div id="card_res" >'.@htmlentities($rezes[$results['res']]).'</div>
-									<div id="card_room">'.@htmlentities($results['rnum']).'</div>
-								</div>
-						</div>
-						
-						<div id="card_under_pic">
-						<br />
-						'.htmlentities($results['s_idnum']).'
-						</div>
-					</div>
-					
-				</div>
-				</center>
-				<br /><br />';
-                */
                 
                 echo '<!-- BEGIN ITEM TIMELINE -->
 						<li class="item-timeline">
@@ -439,14 +324,8 @@ class search {
 			
 			
 		else:
-        echo '<br><center><code class="text-danger">  AWAITING SEARCH INPUT </code></center>
-					<div class="spinner"> 
-					<div class="rect1"></div>
-					<div class="rect2"></div>
-					<div class="rect3"></div>
-					<div class="rect4"></div>
-					<div class="rect5"></div>
-				</div>';
+            echo '<br><center><code class="text-danger">AWAITING SEARCH INPUT </code></center> <div class="spinner"><div class="rect1"></div><div class="rect2"></div><div class="rect3"></div><div class="rect4"></div><div class="rect5"></div></div>';
+            die;
 		endif;
 		
 		

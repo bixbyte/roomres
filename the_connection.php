@@ -12,7 +12,7 @@ class connection{
 
 //The class constructor	
 	public function __construct($db_name, $db_host, $db_username, $db_passwd){
-	
+		
 		if(@$db_host != '' && @$db_name != '' && @$db_username != ''){
 			$this->db_host 		= 	@$db_host;
 			$this->db_name 		= 	@$db_name;
@@ -61,22 +61,23 @@ class connection{
 		}
 	}
 	
-	public function query($statement, $stops){  
+	public function query($statement, $stops=false ){  
 	
 		$_SESSION['query'] = mysqli_query($this->con,"$statement")or $this->die_on_err($stops); 
-		
+		return $_SESSION['query'];
 	}
 	
 	
-	public function num_rows($statement, $stops){
+	public function num_rows($statement, $stops=false ){
 		
 		$this->query($statement, $stops);
 		$stmt = $_SESSION['query'];
 		$_SESSION['num_rows'] = mysqli_num_rows( $stmt );
+        return $_SESSION['num_rows'];
 				
 	}
 
-    public function printQueryResults( $statement, $stops ){
+    public function printQueryResults( $statement, $stops=false ){
 
         $this->query($statement, $stops);
 

@@ -239,7 +239,7 @@
 					$(function(){
 						todate = new Date(); 
 						ftr = $("#footer");
-						ftr.html( "&copy;"+ todate.getFullYear() +" <a href='#the_connection'>The Connection </a> for <a href='http://ueab.ac.ke/' > UEAB</a>");  
+						ftr.html( "&copy;"+ todate.getFullYear() +" <a href='http://bixbyte.cf'>bixbyte</a> for <a href='http://ueab.ac.ke/' > UEAB</a>");  
 					});
 						
                 </script>

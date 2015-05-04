@@ -1,6 +1,6 @@
 <?php
 /* 
-	Author: The Connection 
+	Author: bixbyte
 	For: The University Of Eastern Africa Baraton
 */
 
@@ -218,32 +218,12 @@ switch (@$_REQUEST['act']){
 	 
 	
 	
-	case "clear_room":
 	
-		$id = "room_clearing";
-		include "de_allocate.php";
-		$det = new de_allocator(@sanitize($_REQUEST['id_number'])); 
-		unset($det);
-                exit;
-	break;
 		
 	
-	case "5346)7454dm1_basic_pro":
-		$id = "search.php";
-		include "search.php";
-		$search = new search();
-		$search->basic_pro_search(@sanitize($_REQUEST['stringy']));
-		unset($search);	
-                exit;
-	break; 
+
 	
-	case "detonate":
-		include "add_reservant.php";
-		$resv = new reservant("",@sanitize($_REQUEST['username']),"","","","");
-		$resv->deactivate();
-		unset($resv);
-                exit;
-	break;
+	
 		
 	case "power_switch":
 	

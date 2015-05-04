@@ -1,6 +1,6 @@
 <?php
 /**
-	Author: The Connection 
+	Author: bixbyte
 	For: The University Of Eastern Africa Baraton
 */
 
@@ -72,7 +72,7 @@ echo "Number of Visits: <code>".$_SESSION['not']."</code>";
 <html>
 
     <head>
-    	<title>The Connection | Kitchen Sink</title>
+    	<title>bixbyte| Kitchen Sink</title>
     <link rel="icon"  href="favicon.ico"  /></head>
 	
     <body>

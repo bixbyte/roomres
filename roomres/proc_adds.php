@@ -2,7 +2,7 @@
 
 <?php
 /* 
-	Author: The Connection 
+	Author: bixbyte
 	For: The University Of Eastern Africa Baraton
 */
 
@@ -352,11 +352,13 @@ switch (@$_REQUEST['act']){
 	break;
 	 
 	case "book_room":
+    
 		$id = "room_booking";
 		$connect = true;
 		include "add_reservation.php";
 		$room = new reservation(@sanitize($_REQUEST['r_num']), @sanitize($_REQUEST['residence'])); 
 		unset($room);
+    
 	break;
 	
 	case "clear_room":

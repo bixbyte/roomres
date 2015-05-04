@@ -1,6 +1,6 @@
 <?php
 /* 
-	Author: The Connection 
+	Author: bixbyte
 	For: The University Of Eastern Africa Baraton
 */
 
@@ -13,7 +13,7 @@ include "admin_tools.php";
 <html>
 <head>
 	<style>
-    /* The connection search results card design */ 
+    /* bixbytesearch results card design */ 
 		#card_holder{
 			width:380px;
 			background:url(printable.fw.png);

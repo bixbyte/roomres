@@ -64,7 +64,7 @@ action="" enctype="multipart/form-data" method="POST"  >
       </div>
 <?php
 /* 
-	Author: The Connection 
+	Author: bixbyte
 	For: The University Of Eastern Africa Baraton
 */
 	

@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /*
 	* Author: Ian Innocent 
 	* For: The Connection
@@ -871,7 +871,7 @@ body.outlook p {
                         <table class="twelve columns">
                           <tr>
                             <td class="six sub-columns">
-                              <img src="{@$this->sitepath}card_pic.fw.png" />
+                              <img src="{@$this->sitepath}icon.png" />
                             </td>
                             <td class="six sub-columns last" style="text-align:right; vertical-align:middle;">
                               <span class="template-label">UEAB| RoomRes</span>
@@ -900,10 +900,11 @@ body.outlook p {
                       <table class="twelve columns">
                         <tr>
                           <td>
-                            <h1><code>Hi, $this->to_name</code></h1>
-										<p>Thank you for using the UEAB online room reservation service!</p>
+                            <h1><code>Hello $this->to_name,</code></h1>
+                                        <br />
+										<p>$this->subject</p>
 										<br />
-                						<p class="lead">Message: <code>$this->subject</code></p>
+                						<p class="lead"></p>
                 						$this->content
                           </td>
                           <td class="expander"></td>
@@ -914,24 +915,7 @@ body.outlook p {
                   </tr>
                 </table>
 
-                <table class="row callout">
-                  <tr>
-                    <td class="wrapper last">
-
-                      <table class="twelve columns">
-                        <tr>
-                          <td class="panel">
-                            <p>The above is an important link .To activate your account, <a href="$this->image_url">Click it! »</a></p>
-							<p><font style="color:red">Please ignore this blue area in the scenario of an already activated account </font></p>
-                          </td>
-                          <td class="expander"></td>
-                        </tr>
-                      </table>
-
-                    </td>
-                  </tr>
-                </table>
-
+                
                 <table class="row footer">
                   <tr>
                     <td class="wrapper">
@@ -1149,6 +1133,3 @@ EOF;
 
 
 ?>		
-
-
-

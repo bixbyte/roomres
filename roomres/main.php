@@ -1,6 +1,6 @@
 <?php
 /*
-	* Author: 	The Connection 
+	* Author: 	bixbyte
 	* For: 		The University Of Eastern Africa Baraton
 */
 
@@ -20,13 +20,14 @@ if(@$session_life > $inactive){
 
 
 date_default_timezone_set("Africa/Nairobi");
-//$this_site = "http://41.89.162.20/roomres/";
-$this_site = "http://127.0.0.1/room/roomres/";
+$this_site = "http://127.0.0.1/roomres/";
 
 //$db = 'roomres'; $host = 'localhost'; $user = 'roomres'; 
 //$pass = '2055160roomres15@#';
-$db = 'connect_db'; $host = 'localhost'; $user = 'root'; 
-$pass = '146450f7';
+
+$db = "roomres";    $host = "localhost";    $user = "root";
+$pass = "746450f7";
+
 echo '<link rel="stylesheet" href="'.$this_site.'kitchen.css">';
 /*End of database connection variables*/
 

@@ -12,7 +12,7 @@ class search {
 		 if(!empty($sstringy)):
 		 
 		 	
-			//Get the connection framework core files
+			//Get bixbyteframework core files
 			$id = "search.php";
 			$connect = true;
 			include "main.php";
@@ -104,7 +104,7 @@ class search {
 		if(!empty($sstringy)):
 		 
 		 	
-			//Get the connection framework core files
+			//Get bixbyteframework core files
 			$id = "search.php";
 			$connect = true;
 			include "main.php";
@@ -194,7 +194,7 @@ class search {
 		if(!empty($sstringy)):
 		 
 		 	
-			//Get the connection framework core files
+			//Get bixbyteframework core files
 			$id = "search.php";
 			$connect = true;
 			include "main.php";

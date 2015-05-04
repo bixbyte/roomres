@@ -8,7 +8,7 @@
 <body style=" background-image:url(printable.fw.png) !important;">
 <?php
 /* 
-	Author: The Connection 
+	Author: bixbyte
 	For: The University Of Eastern Africa Baraton
 */
 

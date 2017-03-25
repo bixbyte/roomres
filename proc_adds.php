@@ -1,6 +1,6 @@
 <?php
 /* 
-	Author: The Connection 
+	Author: bixbyte
 	For: The University Of Eastern Africa Baraton
 */
 @session_start();
@@ -40,7 +40,7 @@ switch (@$_REQUEST['act']){
 		}
 	
 	break;
-        
+	
     /* Add a reservant */
         case "new_reservant":
 	
@@ -100,7 +100,7 @@ switch (@$_REQUEST['act']){
 		include 'add_recovery.php';
 		$activate = new recovery(@sanitize($_REQUEST['username']), @sanitize($_REQUEST['email']), "reckey"); 
 		unset($activate);
-                exit;
+        exit;
 	
 	break;
     
@@ -115,20 +115,20 @@ switch (@$_REQUEST['act']){
 			$red = new redirect(@sanitize($_REQUEST['to'])); 
 		}
 		unset($red);
-		die;  
+		exit;  
 	break;
     
 
     /* Reserve a room for the user */
 
-    	case "book_room":
+    case "book_room":
     	
 		$id = "room_booking";
 		$connect = true;
 		include "add_reservation.php";
 		$room = new reservation(@sanitize($_REQUEST['r_num']), @sanitize($_REQUEST['residence'])); 
 		unset($room);
-                exit;
+        exit;
 	break;
 		
 
@@ -222,7 +222,7 @@ switch (@$_REQUEST['act']){
 
     
     /* Specially Reserve Rooms */
-    case "new_room_reserve":    
+    case "new_room_reserve":
     		
     	if(@sanitize($_REQUEST['room_start']) != ''):
     		
@@ -257,8 +257,7 @@ switch (@$_REQUEST['act']){
     
     	elseif(@sanitize($_REQUEST['room_start_2']) != ''):
 	    	
-    		echo "Good!";
-    	
+    		    	
 	    	$start 		= @sanitize($_REQUEST['room_start_2']);
 	    	$stop  		= @sanitize($_REQUEST['room_end_2']);
 	    	$residence 	= @sanitize($_REQUEST['residence_2']);
@@ -266,25 +265,56 @@ switch (@$_REQUEST['act']){
 	    	include "admin_rooms.php";
 	    	$new_room = new admin_room($start, $stop, $residence);
     
-    	if(@$stop != ''){
-    		$new_room->many_avail();
-    	}else{
-    		$new_room->one_avail();
-    	}
-    	unset($new_room);
-    	exit;
+	    	if(@$stop != ''){
+	    		$new_room->many_avail();
+	    	}else{
+	    		$new_room->one_avail();
+	    	}
+	    	unset($new_room);
+    		exit;
     	 
     	endif;
-    
-    
+    	
     break;
     
+    /* Handle reservation reset (single and multiple) */
+    case "clear_room":	
+    	
+		$id = "room_clearing";
+		include "de_allocate.php";
+		$det = new de_allocator(@sanitize($_REQUEST['id_number'])); 
+		unset($det);
+        exit;
+        
+	break;
     
+    /* Confirmed Resident search  { Non Gender Biased }*/
+    case "5346)7454dm1_basic_pro":
+    
+        $id = "search.php";
+        include "search.php";
+        $search = new search();
+        $search->basic_pro_search(@sanitize($_REQUEST['stringy']));
+        unset($search);	
+        exit;
+    
+	break; 
+    
+    /* Deactivate a user account */
+    case "detonate":
+    
+		include "add_reservant.php";                	
+        $resv = new reservant("",@sanitize($_REQUEST['username']),"","","","");
+        $resv->deactivate();
+        unset($resv);
+        exit;
+    
+	break;
     
 	default: 
 		die ('<div class="alert alert-danger alert-bold-border fade in alert-dismissable">
 			  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-			  <strong>Error!</strong><br> AUTHENTICATION FAILED!<br> <a href="#" class="alert-link">TRY AGAIN</a>.
+			  <strong>Error!</strong><br> UNKNOWN REQUEST!<br> <a href="#" class="alert-link">TRY AGAIN</a>.
 			</div>');
 	break;
 

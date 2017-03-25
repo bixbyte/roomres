@@ -40,22 +40,8 @@
 		<link href="assets/css/bootstrap.min.css" rel="stylesheet">
 		
 		<!-- PLUGINS CSS -->
-		<link href="assets/plugins/weather-icon/css/weather-icons.min.css" rel="stylesheet">
-		<link href="assets/plugins/prettify/prettify.min.css" rel="stylesheet">
-		<link href="assets/plugins/magnific-popup/magnific-popup.min.css" rel="stylesheet">
-		<link href="assets/plugins/owl-carousel/owl.carousel.min.css" rel="stylesheet">
-		<link href="assets/plugins/owl-carousel/owl.theme.min.css" rel="stylesheet">
-		<link href="assets/plugins/owl-carousel/owl.transitions.min.css" rel="stylesheet">
-		<link href="assets/plugins/chosen/chosen.min.css" rel="stylesheet">
-		<link href="assets/plugins/icheck/skins/all.css" rel="stylesheet">
-		<link href="assets/plugins/datepicker/datepicker.min.css" rel="stylesheet">
-		<link href="assets/plugins/timepicker/bootstrap-timepicker.min.css" rel="stylesheet">
-		<link href="assets/plugins/summernote/summernote.min.css" rel="stylesheet">
-		<link href="assets/plugins/markdown/bootstrap-markdown.min.css" rel="stylesheet">
-		<link href="assets/plugins/datatable/css/bootstrap.datatable.min.css" rel="stylesheet">
 		<link href="assets/plugins/morris-chart/morris.min.css" rel="stylesheet">
 		<link href="assets/plugins/c3-chart/c3.min.css" rel="stylesheet">
-		<link href="assets/plugins/slider/slider.min.css" rel="stylesheet">
 		
 		<!-- MAIN CSS (REQUIRED ALL PAGE)-->
 		<link href="assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
@@ -153,7 +139,6 @@
 	                    <i class="fa fa-angle-right chevron-icon-sidebar"></i>
 	                    RESIDENCE OCCUPANTS</a>
 	                    <ul class="submenu">
-							<li><a style='cursor:pointer;' onclick='doRes();'>ALL</a></li>
 							<?php
 								$connection->query("SELECT * FROM residence", true);
 								$query = $_SESSION['query'];
@@ -322,29 +307,7 @@
 		
 		<script src="assets/js/bootstrap.min.js"></script>
 		<script src="assets/plugins/retina/retina.min.js"></script>
-		<script src="assets/plugins/nicescroll/jquery.nicescroll.js"></script>
-		<script src="assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
-		<script src="assets/plugins/backstretch/jquery.backstretch.min.js"></script>
- 
-		<!-- PLUGINS -->
-		<script src="assets/plugins/skycons/skycons.js"></script>
-		<script src="assets/plugins/prettify/prettify.js"></script>
-		<script src="assets/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
-		<script src="assets/plugins/owl-carousel/owl.carousel.min.js"></script>
-		<script src="assets/plugins/chosen/chosen.jquery.min.js"></script>
-		<script src="assets/plugins/icheck/icheck.min.js"></script>
-		<script src="assets/plugins/datepicker/bootstrap-datepicker.js"></script>
-		<script src="assets/plugins/timepicker/bootstrap-timepicker.js"></script>
-		<script src="assets/plugins/mask/jquery.mask.min.js"></script>
-		<script src="assets/plugins/validator/bootstrapValidator.min.js"></script>
-		<script src="assets/plugins/datatable/js/jquery.dataTables.min.js"></script>
-		<script src="assets/plugins/datatable/js/bootstrap.datatable.js"></script>
-		<script src="assets/plugins/summernote/summernote.min.js"></script>
-		<script src="assets/plugins/markdown/markdown.js"></script>
-		<script src="assets/plugins/markdown/to-markdown.js"></script>
-		<script src="assets/plugins/markdown/bootstrap-markdown.js"></script>
-		<script src="assets/plugins/slider/bootstrap-slider.js"></script>
-		
+			
 		<!-- EASY PIE CHART JS -->
 		<script src="assets/plugins/easypie-chart/easypiechart.min.js"></script>
 		<script src="assets/plugins/easypie-chart/jquery.easypiechart.min.js"></script>
@@ -356,302 +319,14 @@
 		<script src="assets/plugins/jquery-knob/jquery.knob.js"></script>
 		<script src="assets/plugins/jquery-knob/knob.js"></script>
 
-		<!-- FLOT CHART JS -->
-		<script src="assets/plugins/flot-chart/jquery.flot.js"></script>
-		<script src="assets/plugins/flot-chart/jquery.flot.tooltip.js"></script>
-		<script src="assets/plugins/flot-chart/jquery.flot.resize.js"></script>
-		<script src="assets/plugins/flot-chart/jquery.flot.selection.js"></script>
-		<script src="assets/plugins/flot-chart/jquery.flot.stack.js"></script>
-		<script src="assets/plugins/flot-chart/jquery.flot.time.js"></script>
 
 		<!-- MORRIS JS -->
 		<script src="assets/plugins/morris-chart/raphael.min.js"></script>
 		<script src="assets/plugins/morris-chart/morris.min.js"></script>
 		
-		<!-- C3 JS -->
-		<script src="assets/plugins/c3-chart/d3.v3.min.js" charset="utf-8"></script>
-		<script src="assets/plugins/c3-chart/c3.min.js"></script>
-		
 		<!-- MAIN APPS JS -->
 		<script src="assets/js/apps.js"></script>
-		<script>
-
-
-			function loadResidenceLists( objectID ){
-	
-				$.post('residences.php',
-	                       {},
-	                      function( response ){
-	                        
-	                        var res = "";
-	                        for( item in response ){                                            
-	                            res += '<option value="' + response[item].id + '" > ' + response[item].name + ' </option>';
-	                        }
-	                        $("#" + objectID).html( res );
-	                });	
-				
-			}
-			
-			function residenceManagement(){
-
-				/* Display the residence management options */
-				
-				$(function(){
-                    
-                    window.location="#system_options";
-					$("#system_options").html('<p> <button class="btn btn-success perspective" onclick="resAdd()">Add Residence</button>  &nbsp; <button class="btn btn-success perspective disabled" onclick="resList()">Residence Occupant Lists</button>  &nbsp; <button class="btn btn-success perspective disabled"  onclick="resMan()"> Residence Management </button> </p>');
-										
-				});
-				
-				/* Add new Residence */				
-				/* Residence occupant lists */
-				/* ** Manage current residences ** */
-			}
-
-			//Display Residence Addition Screen
-			function resAdd(){
-
-                $(function(){
-
-                    $("#system_options").html('<strong class="text-success" > Residence Addition</strong><br><div style="" ><input type="text" id="resAddName" class="mbtn"  style="border:1px solid gray; color: green;" placeholder="Residence Name"> &nbsp;<select id="resAddGender" class=" mbtn " style="color: gray; font-weight: normal;"><option value="m" selected>Male</option><option value="f">Female</option><option value="a">Either</option></select>&nbsp;<button id="addRes" class="btn btn-success" style="color: white;"> Add Residence </button></div>');
-
-                    $("#addRes").on("click" , function(){ 
-
-                        var gender = $("#resAddGender").val();
-                        var resname = $("#resAddName").val();
-
-                        if( resname.length < 4 ){
-
-                            $("#resAddName").focus();
-
-                        }else{
-                            
-                            $('#addRes').addClass(' disabled ');
-                            $.post("proc_adds.php", 
-                                   { act: "new_residence", gender: gender  , name: resname },
-                                   function( response ){
-                                $("#system_options").html( response );
-                            }); 
-                        }
-                    });
-                });	
-				
-			}
-
-			//Display The Residence occupants list
-			function resList(){
-			}
-
-			/* Display the general residence management panel */
-			function resMan(){
-			}
-			
-			function roomManagement(){
-
-				$(function(){
-
-                    window.location="#system_options";
-                    $("#system_options").html('<p> <button class="btn btn-primary perspective"  onclick="roomAdd()">Add Rooms</button>   &nbsp; <button class="btn btn-primary perspective" onclick="roomAvail()">Manage room Availability</button>  &nbsp; <button class="btn btn-primary perspective" onclick="roomUnAvail()">Specially Reserved Rooms</button>  </p>');
-										
-				});
-				
-			}
-            
-            
-			function reservantManagement(){
-
-				$(function(){
-
-                    window.location="#system_options";
-					$("#system_options").html('<p><button class="btn btn-danger perspective"  onclick="occuReset()">Reservation Reset</button>   &nbsp; <button class="btn btn-danger perspective" onclick="occuSearch()">Comprehensive search</button> &nbsp; <button class="btn btn-danger perspective" onclick="occuSearch2()">Reservant Search</button>  &nbsp; <button class="btn btn-danger perspective" onclick="occuFin()">Change Reservant\'s Status</button> </p> ');
-					
-					
-				});
-
-			}
-            
-            
-			function systemConfiguration(){
-
-				$(function(){
-
-					
-                    window.location="#system_options";
-					$("#system_options").html('<p> <button class="btn btn-warning perspective"  onclick="sysBackup()">System Backup</button>   &nbsp; <button class="btn btn-warning perspective disabled"  onclick="sysRestore()">System Restore</button>   &nbsp; <button class="btn btn-warning perspective"  onclick="sysClear()">Clear Old Backup</button>   &nbsp; <button class="btn btn-warning perspective"  onclick="sysEnable()">Enable Reservation</button>   &nbsp; <button class="btn btn-warning perspective"  onclick="sysDisable()">Disable Reservation</button>  </p>');
-					
-					
-				});
-			}
-
-            
-			function roomAdd(){
-
-				$(function(){
-
-                    
-                	$("#system_options").html('<strong style="color: #37BC9B;" >Room Addition</strong><br><div><input type="text" class="mbtn" placeholder="First Room" id="roomAddfroom"> &nbsp;<input type="text" class="mbtn" placeholder="nth room" id="roomAddlroom"><br><br><input type="text" class="mbtn" placeholder="Room Capacity" id="roomAddcapacity">&nbsp;<select id="roomAddresidence" class="mbtn" style="text-transform: uppercase;"></select><br><br><button class="btn " style="color:white; background: #37BC9B;" id="addRoom"> Add Room(s) </button></div>');
-					                               
-                   /* Load the residence list to the select box */
-                    
-					loadResidenceLists( "roomAddresidence" );
-                                       
-                    $("#addRoom").on("click", function(){
-                        
-                        var room_start = $("#roomAddfroom");
-                        var room_end   = $("#roomAddlroom");
-                        var room_capacity = $("#roomAddcapacity");
-                        var residence = $("#roomAddresidence");
-                        var act = "new_room";
-                        
-                        if( room_start.val().length > 0  && !isNaN( room_start.val() ) ){
-                            
-                            if( room_capacity.val().length > 0 && !isNaN( room_capacity.val() ) ){
-                                
-                                if( residence.val() != "" && residence.val() != undefined  ){
-                                    
-                                    if( room_end.val().length != 0 ){
-                                        if( isNaN( room_end.val() )  ||  ( parseInt(room_end.val()) < parseInt(room_start.val()) ) ){
-                                            room_end.val('');
-                                        }
-                                    }
-                                    
-                                    $("#addRoom").addClass("disabled");
-                                    
-                                    $.post('proc_adds.php',
-                                           { 
-                                                act: "new_room",
-                                                room_start: room_start.val(),
-                                                room_end: room_end.val(),
-                                                room_capacity: room_capacity.val(),
-                                                residence: residence.val()
-                                            },
-                                          function( response ){
-                                        $("#system_options").html( response );
-                                    });
-                                    
-                                }else{
-                                    residence.focus();
-                                }
-                                
-                            }else{
-                                room_capacity.focus();
-                            }
-                            
-                        }else{
-                            room_start.focus();
-                        }
-                        
-                    });
-                    
-                });
-				
-			}
-
-
-			/**
-            * Manage Room Availability
-            * [Make room[s] unavailable]
-            */
-			function roomAvail(){
-
-				loadResidenceLists("reserveResidence");
-				   
-                $('#system_options').html('<strong style="color: #37BC9B;">Special Room Reservation</strong><br><div><input type="text" class="mbtn" placeholder="First Room" id="room_start"> &nbsp;<input type="text" class="mbtn" placeholder="nth room" id="room_end"><br><br><select id="reserveResidence" class="mbtn" style="text-transform: uppercase;"></select><br><br><button class="btn" style="background: #37BC9B; color: white;" id="specialReserve"> Reserve Room(s)</button></div>');
-
-                $("#specialReserve").on('click', function(){
-
-					var residence =  $("#reserveResidence");
-					var room_start = $("#room_start");
-					var room_end = $("#room_end");
-
-					/* SIMPLE VALIDATION */
-					
-					if( room_start.val().length > 0 ){ 
-
-						if( parseInt( room_start.val() ) >  parseInt( room_end.val() ) ){
-							room_end.val('');
-						} 
-
-						$.post('proc_adds.php',
-								{ 
-									act : "new_room_reserve",
-									residence: residence.val(),
-									room_start: room_start.val(),
-									room_end: room_end.val() 
-								},
-								function( response ){
-
-							$("#system_options").html(response);
-									
-						});
-						
-						
-					}else{
-						room_start.focus();
-					}					
-              	 
-                });
-	
-				
-			}
-
-            
-            
-            /**
-            * Manage Room Availability
-            * [Make room[s] available]
-            */
-            function roomUnAvail(){
-
-                $(function(){
-
-                    $.post('room_unavailable.php', function( data, status, xhr ){
-
-                        if( xhr.getResponseHeader('Content-Type') === "text/html" ){
-                           
-                           $("#system_options").html(data);
-                            
-                       }else{
-                    
-                            rooms = data.rooms
-                            reslist = data.residences
-                            $ress = '<strong style="color: #37BC9B;">Specially Reserved Rooms</strong><br>';
-
-                            for( room in rooms ){
-
-                                $ress += '<div class="panel panel-primary col col-lg-6" ><input type="text" class="mbtn bg-primary col-lg-4" disabled style="" value="'+ rooms[room].r_number +'" > <input type="text" class="mbtn bg-danger col-lg-4" disabled title="' + reslist[rooms[room].residence] +'" value="' + reslist[rooms[room].residence] +'" ><button class="btn btn-warning perspective col-lg-4" style=" " onclick="makeAvailable( '+ rooms[room].r_number +', '+ rooms[room].residence +' )" > Make Available </button></div>';
-
-                            }
-                            $("#system_options").html($ress);
-
-                       }
-                    
-                    });
-                    
-                });
-
-            }
-
-
-        /* 
-            Mark a Single Room as available for booking 
-        */
-        function makeAvailable( room , residence ){
-            
-            $.post('proc_adds.php',
-                   {
-                        act : "new_room_reserve",
-                        room_start_1 : room,
-                        residence_1: residence
-                    },
-                  function( response ){
-                   $("#system_options").html( response );
-                setTimeout(function(){ roomUnAvail(); }, 5000 );
-            });
-            
-        }
-			
-		</script>
+		<script src="assets/js/cpanel.min.js"></script>
 		
 
 	</body>

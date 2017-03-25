@@ -176,7 +176,7 @@
 				<!-- End page heading -->
 <?php
 /* 
-	Author: The Connection 
+	Author: bixbyte
 	For: The University Of Eastern Africa Baraton
 */
 	//Get the User's vital information and store them in session variables

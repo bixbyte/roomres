@@ -1,6 +1,6 @@
 <?php
 /* 
-	Author: The Connection 
+	Author: bixbyte
 	For: The University Of Eastern Africa Baraton
 */
 @session_start();
@@ -54,9 +54,8 @@ class reservant{
 		$custom_image_url = "{$this_site}$this->reclink";
 		
                 /* CREATE AN INITIALLY ACTIVE USER [Change last 1 to a 0 to make initially inactive] */
-		$connection->query("INSERT INTO $this->tbl_name (name, s_idnum, gender, email, tel, passwd, rnum, reckey, actif) VALUES ('$this->name','$this->s_num','$this->gender','$this->email','$this->tel', '$this->passw4d2',0, '$this->reckey', 1) ", true);
-		
-		
+		if( $connection->query("INSERT INTO $this->tbl_name (name, s_idnum, gender, email, tel, passwd, rnum, reckey, actif, reg ) VALUES ('$this->name','$this->s_num','$this->gender','$this->email','$this->tel', '$this->passw4d2',0, '$this->reckey', 1, 1) ", false) ){
+				
 			
 			//Write an email to the new reservant... then give them a congratulatory message!
 			if(@$_SESSION['mailed'] != ''){unset($_SESSION['mailed']);}
@@ -67,8 +66,8 @@ class reservant{
                                echo '<div class="alert alert-success alert-bold-border fade in alert-dismissable">
                                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                                         <strong>Success!</strong><br> You have been Successfully Registered!<br><br>
-                                        Please go to your email address <code> '.$this->email.'</code> to verify your registration. <br><br>
-                                        <div class="panel-warning"> Please check your [JUNK] or [SPAM] folder incase you do not see the message in your inbox!</div><br><br>
+                                       <!-- Please go to your email address <code> '.$this->email.'</code> to verify your registration. <br><br>
+                                        <div class="panel-warning"> Please check your [JUNK] or [SPAM] folder incase you do not see the message in your inbox!</div><br><br> -->
                                         <a href="login.php" class="alert-link"> Login</a>.
                                       </div>';
                                 exit;
@@ -86,6 +85,16 @@ class reservant{
 				
 				
 			endif;
+            
+        }else{
+            
+             echo '<div class="alert alert-danger alert-bold-border fade in alert-dismissable">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <strong><i class="fa fa-times-circle" style="color:red"></i></strong><br> A user with the id <code>'.$this->s_num.'</code> or email <code>'.$this->email.'</code> already exists.
+                  </div>';
+                  die;
+            
+        }
 			
 		
 		
@@ -95,24 +104,43 @@ class reservant{
 		 
 		$id = $this->id;
 		$connect = true;
+		include 'admin_tools.php';
 		include "main.php";
 		
-		$connection->query("UPDATE $this->tbl_name SET actif='0' WHERE s_idnum='$this->s_num'", true);
-		if($_SESSION['query']){
-                        echo '<div class="alert alert-success alert-bold-border fade in alert-dismissable">
-                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                        <strong>Success!</strong><br> User Deactivated!<br><br>
-                                        <a href="javascript:history.back();" class="alert-link"> Go Back </a>.
-                                      </div>';
-			exit;
-		}else{
-                        echo '<div class="alert alert-danger alert-bold-border fade in alert-dismissable">
-                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                        <strong>OOPS!</strong><br> Something Went Terribly Wrong while trying to de-activate that account!<br><br>
-                                        <a href="#" class="alert-link">Please Try Again </a>.
-                                      </div>';
-			exit;
-		}
+
+        $users = explode(",",$this->s_num);
+		
+         foreach( $users as $user ){
+             $this->s_num = $user;
+               
+            if( $connection->num_rows("SELECT * FROM $this->tbl_name WHERE s_idnum='$this->s_num'") > 0 ){ 
+
+                $connection->query("UPDATE $this->tbl_name SET actif='0', reg='0' WHERE s_idnum='$this->s_num'", false);
+                if($_SESSION['query']){
+                    echo '<div class="alert alert-success alert-bold-border fade in alert-dismissable">
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                    <strong><i style="color:green;" class="fa fa-check-circle" style="color:green;" ></i></strong> User Account <code>'.$this->s_num.'</code> Deactivated!
+                                                         </div>';
+                    //exit;
+                }else{
+                    echo '<div class="alert alert-danger alert-bold-border fade in alert-dismissable">
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                    <strong><i class="fa fa-times-circle fa-2x" style="color:red;"></i></strong> Something Went Terribly Wrong while trying to de-activate the account <code>'.$this->s_num.'</code><br><br>
+                                    <a href="#" class="alert-link">Please Try Again </a>.
+                                  </div>';
+                    //exit;
+                }
+
+            }else{
+               echo '<div class="alert alert-danger alert-bold-border fade in alert-dismissable">
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                    <strong><i class="fa fa-times-circle " style="color:red;"></i></strong> The Account <code>'.$this->s_num.'</code> does not exist!<br>
+                                    <a href="#" onclick="occuFin()" class="alert-link">Please Try Again </a>.
+                                  </div>';
+                //exit; 
+            }
+             
+         }
 		
 	}
 

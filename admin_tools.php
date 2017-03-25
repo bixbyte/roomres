@@ -1,6 +1,6 @@
 <?php
 /* 
-	Author: The Connection 
+	Author: bixbyte
 	For: The University Of Eastern Africa Baraton
 */
 	@session_start();
@@ -24,18 +24,10 @@
 			
 	}
 		
-		die('<h2>
-				<code> STuck In Limbo!!! </code>
-			</h2>
-			<h4>
-				.. .. .. 
-				<code> You better Pray. </code>
-			</h4>
-			 <br />
-			 <br />
-			 <br />
-			<button id="repent" onClick="javascript:alert();window.close();" ><a style="text-align:right; text-decoration:none;" href="proc_adds.php?act=logout&to=c_login.php"> repen+ </a></button>
-			 ');
+		echo '<script> alert("There was a problem granting you secure access\n\n Please Login again"); </script>';
+						include "redirect.php";
+						$fly_away = new redirect("proc_adds.php?act=logout&to=c_login.php");
+						exit; 
 				
 	}
 	

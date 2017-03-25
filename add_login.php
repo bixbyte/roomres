@@ -1,6 +1,6 @@
 <?php
 /* 
-	Author: The Connection 
+	Author: bixbyte
 	For: The University Of Eastern Africa Baraton
 */
 @session_start();
@@ -70,8 +70,8 @@ class login{
 		}
 		
 		$id = $this->id;
-		$connect = true;
-		include "main.php";
+		$connect = true; 
+		include "main.php"; 
 		$make_pass = new obsfucate($this->passw4d,'make_password');
 		$this->passw4d = $_SESSION['passwd']; 
 		

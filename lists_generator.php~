@@ -1,6 +1,6 @@
 <?php
 /* 
-	Author: bixbyte
+	Author: The Connection 
 	For: The University Of Eastern Africa Baraton
 */
 
@@ -11,7 +11,7 @@ class listgen{
 	public $id = "list_generator.php";
 	
 	public function __construct(){
-		include "admin_tools.php";
+		//include "admin_tools.php";
 		
 	}
 	

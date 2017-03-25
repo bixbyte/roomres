@@ -155,7 +155,7 @@ BEGIN PAGE
                         <ul class="submenu visible">
                             <li><a href="#picture" style="text-decoration: line-through"  >Picture</a></li>
                             <li><a href="#email" style="text-decoration: line-through" >Email</a></li>
-                            <li><a href="new_password.php"  >Password</a></li>
+                            <li><a href="proc_adds.php?act=logout&to=new_password.php"  >Password</a></li>
                         </ul>
                     </li>
 
@@ -176,7 +176,7 @@ BEGIN PAGE
                     <!-- End page heading -->
                     <?php
 /* 
-	Author: The Connection 
+	Author: bixbyte
 	For: The University Of Eastern Africa Baraton
 */
 //Get the User's vital information and store them in session variables
